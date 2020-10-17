@@ -1,7 +1,9 @@
-# front end development
+# **Music Makers**
 
-npm run dev-fe
+# Development
 
-# back end development
+1. "npm install" in root
 
-npm run dev-be
+2. "npm run dev-fe" in terminal 1 to run front end
+
+3. "npm run dev-be" in terminal 2 to run back end
