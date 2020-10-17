@@ -8,7 +8,8 @@
     "build": "react-scripts build",
     "dev-fe": "NODE_ENV=development,EXTEND_ESLINT=true react-scripts start",
     "dev-be": "NODE_ENV=development,EXTEND_ESLINT=true nodemon scripts/server.js",
-    "test": "react-scripts test",
+    "test-fe": "react-scripts test",
+    "test-be": "mocha",
     "eject": "react-scripts eject",
     "postinstall": "npm run build",
     "lint": "eslint --ext .js,.jsx .",
@@ -26,15 +27,12 @@
     "react-dom": "^16.13.1",
     "react-loading": "^2.0.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
     "tone": "^14.7.58"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/react": "^16.9.43",
-    "@types/react-bootstrap": "^1.0.1",
     "acorn": "^7.3.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.6.0",
@@ -51,8 +49,8 @@
     "type": "git",
     "url": "git+https://github.com/Reed22/MusicMakers.git"
   },
-  "author": "Dominic Lupo",
-  "license": "GPLv3",
+  "author": "Dave Passaro, Reed Robinson, Dominic Lupo",
+  "license": "Unlicensed",
   "bugs": {
     "url": "https://github.com/Reed22/MusicMakers/issues"
   },

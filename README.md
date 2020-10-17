@@ -7,3 +7,9 @@
 2. "npm run dev-fe" in terminal 1 to run front end
 
 3. "npm run dev-be" in terminal 2 to run back end
+
+# Test
+
+1. npm run test-fe
+
+2. npm run test-be
