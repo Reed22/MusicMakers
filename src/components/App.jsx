@@ -6,6 +6,8 @@ import Quiz from './Quiz';
 import Login from './Login';
 import Piano from './Piano';
 import GenericMessage from './GenericMessage';
+import TriadQuiz from './TriadQuiz';
+import IntervalQuiz from './IntervalQuiz';
 
 export default function App() {
   return (
