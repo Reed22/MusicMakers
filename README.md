@@ -4,10 +4,15 @@
 
 "npm install" in root
 
-Add a .env file in the root with the following environment variables:
+Add a .env file in root with the following environment variables:
 
 > NODE_ENV=development  
-> EXTEND_ESLINT=true
+
+# Test
+
+1. npm run test-fe
+
+2. npm run test-be
 
 # Development scripts
 
