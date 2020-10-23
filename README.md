@@ -1,9 +1,16 @@
 # **Music Makers**
 
-# Development
+# Development setup
 
-1. "npm install" in root
+"npm install" in root
 
-2. "npm run dev-fe" in terminal 1 to run front end
+Add a .env file in the root with the following environment variables:
 
-3. "npm run dev-be" in terminal 2 to run back end
+> NODE_ENV=development  
+> EXTEND_ESLINT=true
+
+# Development scripts
+
+"npm run dev-fe" in terminal 1 to run front end
+
+"npm run dev-be" in terminal 2 to run back end
