@@ -51,18 +51,102 @@ function Piano() {
   return (
     <div>
       <div className="piano">
-        <Key octave={octave} audio={sampler} dataNote="C" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="Db" type="key black" />
-        <Key octave={octave} audio={sampler} dataNote="D" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="E" type="key black" />
-        <Key octave={octave} audio={sampler} dataNote="Eb" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="F" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="Gb" type="key black" />
-        <Key octave={octave} audio={sampler} dataNote="G" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="Ab" type="key black" />
-        <Key octave={octave} audio={sampler} dataNote="A" type="key white" />
-        <Key octave={octave} audio={sampler} dataNote="Bb" type="key black" />
-        <Key octave={octave} audio={sampler} dataNote="B" type="key white" />
+        <Key
+          keyChar="S"
+          keyCode="83"
+          octave={octave}
+          audio={sampler}
+          dataNote="C"
+          type="key white"
+        />
+        <Key
+          keyChar="E"
+          keyCode="69"
+          octave={octave}
+          audio={sampler}
+          dataNote="Db"
+          type="key black"
+        />
+        <Key
+          keyChar="D"
+          keyCode="68"
+          octave={octave}
+          audio={sampler}
+          dataNote="D"
+          type="key white"
+        />
+        <Key
+          keyChar="R"
+          keyCode="82"
+          octave={octave}
+          audio={sampler}
+          dataNote="E"
+          type="key black"
+        />
+        <Key
+          keyChar="F"
+          keyCode="70"
+          octave={octave}
+          audio={sampler}
+          dataNote="Eb"
+          type="key white"
+        />
+        <Key
+          keyChar="G"
+          keyCode="71"
+          octave={octave}
+          audio={sampler}
+          dataNote="F"
+          type="key white"
+        />
+        <Key
+          keyChar="Y"
+          keyCode="89"
+          octave={octave}
+          audio={sampler}
+          dataNote="Gb"
+          type="key black"
+        />
+        <Key
+          keyChar="H"
+          keyCode="72"
+          octave={octave}
+          audio={sampler}
+          dataNote="G"
+          type="key white"
+        />
+        <Key
+          keyChar="U"
+          keyCode="85"
+          octave={octave}
+          audio={sampler}
+          dataNote="Ab"
+          type="key black"
+        />
+        <Key
+          keyChar="J"
+          keyCode="74"
+          octave={octave}
+          audio={sampler}
+          dataNote="A"
+          type="key white"
+        />
+        <Key
+          keyChar="I"
+          keyCode="73"
+          octave={octave}
+          audio={sampler}
+          dataNote="Bb"
+          type="key black"
+        />
+        <Key
+          keyChar="K"
+          keyCode="75"
+          octave={octave}
+          audio={sampler}
+          dataNote="B"
+          type="key white"
+        />
       </div>
     </div>
   );
