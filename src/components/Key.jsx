@@ -1,20 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import keydown from 'react-keydown';
 
 function Key(props) {
-  function playSound() {
-    props.audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
+  const keyColor = props.type === 'key white' ? 'white' : 'black';
+  const playedColor = keyColor === 'black' ? '#333' : '#CCC';
+
+  const [played, setPlayed] = useState(false);
+  const [color, setColor] = useState(keyColor);
+
+  function changeColor() {
+    if (played) {
+      setColor(playedColor);
+    } else {
+      setColor(keyColor);
+    }
   }
 
+  function changePlay() {
+    setPlayed((prevPlay) => !prevPlay);
+    changeColor();
+  }
+
+  function playSound() {
+    changePlay();
+    props.audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
+    setTimeout(changePlay, 250); // Probably not the best way to do this
+  }
+
+  useEffect(changeColor, [played]);
+
+  const handleKeyDown = (event) => {
+    if (event.keyCode == props.keyCode) playSound();
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      // eslint-disable-next-line react/destructuring-assignment
+      style={{ backgroundColor: color}}
       dataNote={props.dataNote}
-      // eslint-disable-next-line react/destructuring-assignment
       className={props.type}
       onClick={playSound}
-      onKeyDown={playSound}
-    />
+      onKeyDown={handleKeyDown}
+    > 
+    <p>{props.keyChar}</p>
+    </div>
   );
 }
 

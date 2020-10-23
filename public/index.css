@@ -36,3 +36,19 @@ body {
   background-color: white;
   border: 1px solid #333;
 }
+
+.key p {
+  text-align: center;
+  font-size: 30px;
+  margin: auto;
+}
+
+.black p {
+  margin-top: 190px;
+  color: white;
+}
+
+.white p {
+  color: black;
+  margin-top: 350px;
+}
