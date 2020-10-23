@@ -6,6 +6,8 @@ function Piano() {
   // Start at third octave
   const [octave, setOctave] = useState('3');
 
+  t
+
   // Sound samples for piano. May need to set as a buffer with Tone buffer
   const sampler = new Tone.Sampler({
     urls: {
