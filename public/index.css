@@ -5,19 +5,103 @@
 }
 
 html body {
-  background-color: #143f6b;
-  color: white;
+  background-color:sandybrown;
+  padding: 0;
+  margin: 0;
+  margin-top: 56px;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.polyrhythm {
+  margin-top: 106px;
+  width: 904px;
+  height: 154px;
+  display: flex;
+  flex-flow: row wrap;
+  border: solid;
+  border-width: 2px;
+}
+
+.polyrhythm-ctrl {
+  width: 300px;
+  height: 150px;
+  display: flex;
+}
+
+.polyrhythm-ctrl-btn {
+  width: 100px;
+  height: 150px;
+  background-color: white;
+  border-width: 0px;
+  transition-property: background-color;
+  transition-duration: 0.25s;
+  padding: 0px;
+  margin: 0px;
+}
+
+.polyrhythm-ctrl-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.polyrhythm-ctrl-btn:hover {
+  background-color: lightgray;
+  -webkit-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+
+.polyrhythm-ctrl-number {
+  width: 100px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75px;
+}
+
+.polyrhythm-bpm-input {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  border-width: 0px;
+}
+
+.polyrhythm-bpm-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.polyrhythm-bpm-text {
+  width: 300px;
+  height: 50px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.polyrhythm-bpm-number {
+  width: 300px;
+  height: 100px;
+  font-size: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .piano {
+  margin-top: 100px;
+  justify-content: center;
   display: flex;
 }
 
@@ -30,6 +114,10 @@ body {
   z-index: 2;
 }
 
+.black:hover {
+  cursor: pointer;
+}
+
 .white {
   width: 100px;
   height: 400px;
@@ -37,6 +125,9 @@ body {
   border: 1px solid #333;
 }
 
+.white:hover {
+  cursor: pointer;
+}
 .key p {
   text-align: center;
   font-size: 30px;
