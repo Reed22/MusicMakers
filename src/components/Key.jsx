@@ -34,11 +34,12 @@ function Key(props) {
   };
 
   useEffect(() => {
+    //alert(props.keyChar)
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  },[played]); // May need to add octave state..
 
   return (
     <div
