@@ -7,6 +7,10 @@
 Add a .env file in root with the following environment variables:
 
 > NODE_ENV=development  
+> DB_HOST=localhost  
+> DB_DATABASE=musicmakers  
+> DB_USERNAME=username  
+> DB_PASSWORD=password  
 
 # Test
 
