@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import * as Tone from 'tone';
 import Key from './Key';
+import OctaveCtrl from './OctaveCtrl';
 
 function Piano() {
   // Start at third octave
-  const [octave, setOctave] = useState('3');
+  const [octave, setOctave] = useState(3);
 
   // Sound samples for piano. May need to set as a buffer with Tone buffer
   const sampler = new Tone.Sampler({
@@ -48,8 +49,25 @@ function Piano() {
   synth.oscillator.type = 'sine';
   synth.toMaster();
 
+  function changeOctave(event){
+    setOctave(prevState => {
+      // If button pressed was specific octave
+      if(event.target.id != '+1' && event.target.id != '-1')
+        return event.target.id
+      
+      // If button was a decrease or increase from current value. Valid Octave (1 - 4)
+      else if(prevState + parseInt(event.target.id) >= 1 && prevState + parseInt(event.target.id) <= 4)
+          return prevState + parseInt(event.target.id)
+      
+      else return prevState
+      //if(prevState + parseInt(event.target.id) < 1)
+    })
+  }
+
   return (
     <div>
+      <OctaveCtrl handleChangeOctave={changeOctave} octave={octave} />
+
       <div className="piano">
         <Key
           keyChar="S"

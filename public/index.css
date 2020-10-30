@@ -143,3 +143,10 @@ body {
   color: black;
   margin-top: 350px;
 }
+
+#octave-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
