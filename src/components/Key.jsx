@@ -30,11 +30,12 @@ function Key(props) {
   useEffect(changeColor, [played]);
 
   const handleKeyDown = (event) => {
-    if (event.keyCode == props.keyCode) playSound();
+    //if(event.key == 'z')
+      //alert(event.key == props.keyChar)
+    if (event.key == props.keyChar.toLowerCase()) playSound();
   };
 
   useEffect(() => {
-    //alert(props.keyChar)
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
