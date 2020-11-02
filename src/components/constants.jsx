@@ -37,4 +37,57 @@ const sampler = new Tone.Sampler({
     baseUrl: 'https://tonejs.github.io/audio/salamander/',
   }).toDestination();
 
-export default sampler
+const leftOctaveKeys = ['Z', 'S', 'X', 'D', 'C', 'V', 'G', 'B', 'H', 'N', 'J', 'M']
+const rightOctaveKeys = ['W', '3', 'E', '4', 'R', 'T', '6', 'Y', '7', 'U', '8', 'I']
+const octaveSetup = [
+    {
+        type: "key white",
+        note: "C"
+    },
+    {
+        type: "key black",
+        note: "Db"
+    },
+    {
+        type: "key white",
+        note: "D"
+    },
+    {
+        type: "key black",
+        note: "Eb"
+    },
+    {
+        type: "key white",
+        note: "E"
+    },
+    {
+        type: "key white",
+        note: "F"
+    },
+    {
+        type: "key black",
+        note: "Gb"
+    },
+    {
+        type: "key white",
+        note: "G"
+    },
+    {
+        type: "key black",
+        note: "Ab"
+    },
+    {
+        type: "key white",
+        note: "A"
+    },
+    {
+        type: "key black",
+        note: "Bb"
+    },
+    {
+        type: "key white",
+        note: "B"
+    },
+]
+
+export {sampler, leftOctaveKeys, rightOctaveKeys, octaveSetup} 

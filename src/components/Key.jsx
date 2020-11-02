@@ -39,7 +39,7 @@ function Key(props) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  },[played]); // May need to add octave state..
+  },[props.octave]);
 
   return (
     <div
@@ -47,7 +47,6 @@ function Key(props) {
       dataNote={props.dataNote}
       className={props.type}
       onClick={playSound}
-      onKeyDown={handleKeyDown}
     > 
     <p>{props.keyChar}</p>
     </div>
