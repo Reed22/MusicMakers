@@ -19,3 +19,14 @@ Add a .env file in root with the following environment variables:
 "npm run dev-fe" in terminal 1 to run front end
 
 "npm run dev-be" in terminal 2 to run back end
+
+
+
+
+
+ 
+TO DO LIST:
+
+Front End: scale preset light up functionality, add to quizzes, create guitar fretboard note selection quiz, piano synth sound (with note (sound) maintained during key depression) 
+Full Stack: Maintain quiz metrics for user (although could avoid DB if just for the current session), pswd/username login ect
+
