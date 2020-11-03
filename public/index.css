@@ -143,3 +143,20 @@ body {
   color: black;
   margin-top: 350px;
 }
+.fretboard-wrapper {
+    display: grid;
+    grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
+    grid-template-rows: 12% 12% 12% 12% 12% 12% 12%;
+    grid-gap: 5px;
+    background-color: #fff;
+    color: #444;
+  }
+  
+  .fretboard-box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+  }
+  .fretboard-open{border-radius:30px;color: red}
