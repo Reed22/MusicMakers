@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import keydown from 'react-keydown';
+import React, { useState, useEffect, useContext } from 'react';
+import SamplerContext from './SamplerContext'
 
 function Key(props) {
   const keyColor = props.type === 'key white' ? 'white' : 'black';
   const playedColor = keyColor === 'black' ? '#333' : '#CCC';
+  const audio = useContext(SamplerContext);
 
   const [played, setPlayed] = useState(false);
   const [color, setColor] = useState(keyColor);
@@ -23,14 +24,14 @@ function Key(props) {
 
   function playSound() {
     changePlay();
-    props.audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
+    audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
     setTimeout(changePlay, 250); // Probably not the best way to do this
   }
 
   useEffect(changeColor, [played]);
 
   const handleKeyDown = (event) => {
-    if (event.keyCode == props.keyCode) playSound();
+    if (event.key == props.keyChar.toLowerCase()) playSound();
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function Key(props) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  },[props.octave]);
 
   return (
     <div
@@ -46,7 +47,6 @@ function Key(props) {
       dataNote={props.dataNote}
       className={props.type}
       onClick={playSound}
-      onKeyDown={handleKeyDown}
     > 
     <p>{props.keyChar}</p>
     </div>

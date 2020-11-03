@@ -99,18 +99,27 @@ body {
   align-items: center;
 }
 
-.piano {
-  margin-top: 100px;
+.piano, .octave {
   justify-content: center;
   display: flex;
 }
 
+.key {
+  height: calc(var(--width) * 4);
+  width: var(--width);
+}
+
+.white {
+  --width: 60px;
+  background-color: white;
+  border: 1px solid #333;
+}
+
 .black {
-  width: 60px;
-  height: 240px;
+  --width: 36px;
   background-color: black;
-  margin-left: -30px;
-  margin-right: -30px;
+  margin-left: calc(var(--width) / -2);
+  margin-right: calc(var(--width) / -2);
   z-index: 2;
 }
 
@@ -118,31 +127,33 @@ body {
   cursor: pointer;
 }
 
-.white {
-  width: 100px;
-  height: 400px;
-  background-color: white;
-  border: 1px solid #333;
-}
-
 .white:hover {
   cursor: pointer;
 }
+
+/*** Start of Letters on Keys ***/
 .key p {
-  text-align: center;
-  font-size: 30px;
-  margin: auto;
+  position: absolute;
+  font-size: 20px;
 }
 
 .black p {
-  margin-top: 190px;
   color: white;
+  top: 60%;
+  padding-left: calc(var(--width) / 3);
 }
 
 .white p {
   color: black;
-  margin-top: 350px;
+  top: 73%;
+  padding-left: calc(var(--width) / 3);
+
 }
+
+.octave-identifier{
+  text-align: center;
+}
+
 .fretboard-wrapper {
     display: grid;
     grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
@@ -160,3 +171,7 @@ body {
     font-size: 150%;
   }
   .fretboard-open{border-radius:30px;color: red}
+=======
+/*** End of Letters on Keys ***/
+
+
