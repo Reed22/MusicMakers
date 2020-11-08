@@ -90,4 +90,70 @@ const octaveSetup = [
     },
 ]
 
-export {sampler, leftOctaveKeys, rightOctaveKeys, octaveSetup} 
+const scales = {
+    cMajor: [
+                {
+                    note: 'C',
+                    octaveChange: 0
+                },
+                {
+                    note: 'D',
+                    octaveChange: 0
+                },
+                {
+                    note: 'E',
+                    octaveChange: 0
+                },
+                {
+                    note: 'F',
+                    octaveChange: 0
+                },
+                {
+                    note: 'G',
+                    octaveChange: 0
+                },
+                {
+                    note: 'A',
+                    octaveChange: 0
+                },
+                {
+                    note: 'B',
+                    octaveChange: 0
+                },
+                {
+                    note: 'C',
+                    octaveChange: 1
+                },
+                {
+                    note: 'B',
+                    octaveChange: 0
+                },
+                {
+                    note: 'A',
+                    octaveChange: 0
+                },
+                {
+                    note: 'G',
+                    octaveChange: 0
+                },
+                {
+                    note: 'F',
+                    octaveChange: 0
+                },
+                {
+                    note: 'E',
+                    octaveChange: 0
+                },
+                {
+                    note: 'D',
+                    octaveChange: 0
+                },
+                {
+                    note: 'C',
+                    octaveChange: 0
+                },
+            ]
+}
+
+
+export {sampler, leftOctaveKeys, rightOctaveKeys, octaveSetup, scales} 
