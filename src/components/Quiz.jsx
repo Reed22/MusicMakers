@@ -1,12 +1,17 @@
 import React from "react";
 import TriadQuiz from "./TriadQuiz";
 import InteralQuiz from "./IntervalQuiz";
+import FretBoard from "./FretBoard";
 
 export default function Quiz() {
   return (
-    <h1 className="text-center">
+    <div className="text-center">
+      <br />
       <TriadQuiz />
+      <br />
       <InteralQuiz />
-    </h1>
+      <br />
+      <FretBoard />
+    </div>
   );
 }
