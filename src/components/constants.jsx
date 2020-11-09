@@ -94,65 +94,905 @@ const scales = {
     cMajor: [
                 {
                     note: 'C',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 0.5
                 },
                 {
                     note: 'D',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 1
                 },
                 {
                     note: 'E',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 1.5
                 },
                 {
                     note: 'F',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 2
                 },
                 {
                     note: 'G',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 2.5
                 },
                 {
                     note: 'A',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 3
                 },
                 {
                     note: 'B',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 3.5
+                },
+                 {
+                    note: 'C',
+                    octaveChange: 1,
+                    delay: 4
                 },
                 {
                     note: 'C',
-                    octaveChange: 1
-                },
+                    octaveChange: 1,
+                    delay: 4.5
+                },  
                 {
                     note: 'B',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 5
                 },
                 {
                     note: 'A',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 5.5
                 },
                 {
                     note: 'G',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 6
                 },
                 {
                     note: 'F',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 6.5
                 },
                 {
                     note: 'E',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 7
                 },
                 {
                     note: 'D',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 7.5
                 },
                 {
                     note: 'C',
-                    octaveChange: 0
+                    octaveChange: 0,
+                    delay: 8
                 },
-            ]
+    ],
+    dMajor: [
+        {
+            note: 'D',
+            octaveChange: 0,
+            delay: 0.5
+        },
+        {
+            note: 'E',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 2
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 2.5
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 3
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'D',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 5.5
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 6
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 6.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'E',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'D',
+            octaveChange: 0,
+            delay: 8
+        }
+    ],
+    eMajor: [
+        {
+            note: 'E',
+            octaveChange: 0,
+            delay: 0.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 2
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 2.5
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'E',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 6
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 6.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'E',
+            octaveChange: 0,
+            delay: 8
+        }
+    ],
+    fMajor: [
+        {
+            note: 'F',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'G',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 2
+        }, 
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'F',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'F',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 6.5
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'F',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    gMajor: [
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'A',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 2
+        }, 
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'G',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'G',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 6.5
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    aMajor: [
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'B',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 1.5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 2
+        }, 
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'A',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'A',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 6.5
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 7
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'A',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    bMajor: [
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 1
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 1.5
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 2
+        }, 
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'Bb',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'B',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'B',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'E',
+            octaveChange: 1,
+            delay: 6.5
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 7
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 7.5
+        },
+        {
+            note: 'B',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    abMajor: [
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 1.5
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 2
+        }, 
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'F',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'G',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'Ab',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'G',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'F',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 6.5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 7
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    bbMajor: [
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'C',
+            octaveChange: 1,
+            delay: 1
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 1.5
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 2
+        }, 
+        {
+            note: 'F',
+            octaveChange: 1,
+            delay: 2.5
+        },
+        {
+            note: 'G',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'A',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'Bb',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'Bb',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'A',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'G',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'F',
+            octaveChange: 1,
+            delay: 6
+        },
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 6.5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 7
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 7.5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    ebMajor: [
+        {
+            note: 'Eb',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'F',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 2
+        }, 
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 2.5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 3
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'Eb',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'D',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 5.5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 6
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 6.5
+        },
+        {
+            note: 'G',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'F',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'Eb',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ],
+    dbMajor: [
+        {
+            note: 'Db',
+            octaveChange: 0,
+            delay: 0.5
+        },
+         {
+            note: 'Eb',
+            octaveChange: 0,
+            delay: 1
+        },
+        {
+            note: 'F',
+            octaveChange: 0,
+            delay: 1.5
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 2
+        }, 
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 2.5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 3
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 3.5
+        },
+         {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 4
+        }, 
+        {
+            note: 'Db',
+            octaveChange: 1,
+            delay: 4.5
+        },
+        {
+            note: 'C',
+            octaveChange: 1,
+            delay: 5
+        },
+        {
+            note: 'Bb',
+            octaveChange: 0,
+            delay: 5.5
+        },
+        {
+            note: 'Ab',
+            octaveChange: 0,
+            delay: 6
+        },
+        {
+            note: 'Gb',
+            octaveChange: 0,
+            delay: 6.5
+        },
+        {
+            note: 'F',
+            octaveChange: 0,
+            delay: 7
+        },
+        {
+            note: 'Eb',
+            octaveChange: 0,
+            delay: 7.5
+        },
+        {
+            note: 'Db',
+            octaveChange: 0,
+            delay: 8
+        } 
+    ]
 }
 
 

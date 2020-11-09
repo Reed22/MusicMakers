@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SamplerContext from './SamplerContext'
+import * as Tone from 'tone';
 
 function Key(props) {
   const keyColor = props.type === 'key white' ? 'white' : 'black';
@@ -23,10 +24,25 @@ function Key(props) {
   }
 
   function playSound() {
-    changePlay();
-    audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
-    setTimeout(changePlay, 250); // Probably not the best way to do this
-  }
+    if(props.octaveSet == '2') {
+      console.log(props.dataNote)
+    }
+      changePlay();
+      audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
+      setTimeout(changePlay, 250); // Probably not the best way to do this
+
+}
+
+function playScaleKey(notes) {
+ // if(props.octaveSet == '2')
+   // console.log(notes)
+  const now = Tone.now()
+  notes.forEach(note => {
+    setTimeout(changePlay, note.delay * 1000);
+    audio.triggerAttackRelease(props.dataNote  + props.octave, "8n", now + note.delay)
+    setTimeout(changePlay, 250 + note.delay * 1000);
+  }) 
+}
 
   useEffect(changeColor, [played]);
 
@@ -40,6 +56,10 @@ function Key(props) {
       document.removeEventListener('keydown', handleKeyDown);
     };
   },[props.octave]);
+
+  useEffect(() => {
+     if(props.play) playScaleKey(props.play)
+  }, [props.play]) 
 
   return (
     <div
