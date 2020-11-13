@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Key from './Key';
 import {octaveSetup} from './constants'
 
-function Octave(props) {
-    const key_components = octaveSetup.map((key, index) => {
+//Creates Key Components
+//scaleChange is bool that determines whether the scales changed or not. If not,
+//Key play prop will be null so that scale does not get played again on octave change
+function generateKeyComp(props, scaleChange){
+    return octaveSetup.map((key, index) => {
         if(props.scales){
             const notes_first_octave = props.scales.filter(note_obj => note_obj.note == key.note && note_obj.octaveChange == 0)
             const notes_second_octave = props.scales.filter(note_obj => note_obj.note == key.note && note_obj.octaveChange == 1)
-            //const note = props.scales.filter(note_obj => note_obj.note == key.note)
+
             //If the scale does not include this key, dont send play prop
-            if(notes_first_octave.length == 0 && notes_second_octave.length == 0) {
+            if(!scaleChange || (notes_first_octave.length == 0 && notes_second_octave.length == 0)) {
                 return (
                     <Key
                         keyChar={props.keyInput[index]}
@@ -33,7 +36,6 @@ function Octave(props) {
                     )    
                 }
                 else {
-                    //console.log(notes_second_octave)
                     return (
                         <Key
                             octaveSet={props.octaveSet}
@@ -60,6 +62,13 @@ function Octave(props) {
             )   
         }   
     })
+}
+function Octave(props) {
+    const [key_components, setKeys] = useState(generateKeyComp(props))
+
+    useEffect(() => { setKeys(generateKeyComp(props, true))}, [props.scales])
+    useEffect(() => { setKeys(generateKeyComp(props, false))}, [props.octave])
+
 
     return (
         <div>
