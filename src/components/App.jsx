@@ -8,6 +8,7 @@ import Home from './Home';
 import GenericMessage from './GenericMessage';
 import TriadQuiz from './TriadQuiz';
 import IntervalQuiz from './IntervalQuiz';
+import Profile from './Profile'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Header />
         <Switch>
           <Route exact path="/login" key="/login" render={() => <Login />} />
+          <Route exact path="/profile" key="/profile" render={() => <Profile />} />
           <Route exact path="/quiz" key="/quiz" render={() => <Quiz />} />
           <Route exact path="/" key="/" render={() => <Home />} />
           <Route path="*" render={() => <GenericMessage message="404" />} />
