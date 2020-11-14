@@ -12,7 +12,6 @@ const post = async (req, res, next) => {
     });
 
     console.log(dbRes); // TODO remove
-
     res.status(200).end(); // TODO status code
   } catch (e) {
     res.status(400).end(); // TODO status code

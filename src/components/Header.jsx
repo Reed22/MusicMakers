@@ -28,6 +28,11 @@ export default function Header() {
               Login
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/profile">
+              Profile
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
