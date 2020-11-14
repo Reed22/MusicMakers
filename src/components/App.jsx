@@ -17,7 +17,7 @@ export default function App() {
         <Header />
         <Switch>
           <Route exact path="/login" key="/login" render={() => <Login />} />
-          <Route exact path="/profile" key="/profile" render={() => <Profile />} />
+          <Route exact path="/profile" key="/profile" render={(props) => <Profile {...props}/>} />
           <Route exact path="/quiz" key="/quiz" render={() => <Quiz />} />
           <Route exact path="/" key="/" render={() => <Home />} />
           <Route path="*" render={() => <GenericMessage message="404" />} />
