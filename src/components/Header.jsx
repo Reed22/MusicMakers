@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './navigation.css';
 
 export default function Header() {
+  
   return (
     <nav className="navbar navbar-expand navbar-light bg-dark fixed-top">
       {/* left side links */}
@@ -16,6 +17,11 @@ export default function Header() {
           <li className="nav-item">
             <Link className="nav-link text-white" to="/quiz">
               Quiz
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/create-scales">
+              Create Scales
             </Link>
           </li>
         </ul>

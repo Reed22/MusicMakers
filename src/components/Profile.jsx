@@ -1,12 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import ProfileLists from './ProfileLists'
 import ProfileInfo from './ProfileInfo'
-import QuizList from './QuizList'
-import CustomScaleList from './CustomScaleList'
+import UserInfo from './UserInfo.js'
+import { Redirect } from 'react-router-dom'
 
 export default function Profile(props) {
     const [list, setList] = useState("Scales")
 
+    if(UserInfo.getEmail() === "") 
+        return (
+            <Redirect
+                to={{
+                    pathname: "/login",
+                    state: { error: "Please Register/Login" }
+                }}
+            />
+        )
 
     return (
         <div className="container">
@@ -31,7 +40,7 @@ export default function Profile(props) {
                     </div>
                 </div>
                 <div className="profile-container">
-                    <ProfileInfo email={props.location.state.email} />
+                    <ProfileInfo email={UserInfo.getEmail()} />
                     <ProfileLists list={list}/>
                 </div>
             </div>

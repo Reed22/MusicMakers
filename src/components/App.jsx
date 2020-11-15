@@ -6,6 +6,7 @@ import Quiz from './Quiz';
 import Login from './Login';
 import Home from './Home';
 import GenericMessage from './GenericMessage';
+import CreateScales from './CreateScales'
 import TriadQuiz from './TriadQuiz';
 import IntervalQuiz from './IntervalQuiz';
 import Profile from './Profile'
@@ -16,9 +17,10 @@ export default function App() {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/login" key="/login" render={() => <Login />} />
+          <Route exact path="/login" key="/login" render={(props) => <Login {...props} />} />
           <Route exact path="/profile" key="/profile" render={(props) => <Profile {...props}/>} />
           <Route exact path="/quiz" key="/quiz" render={() => <Quiz />} />
+          <Route exact path="/create-scales" key="/create-scales" render={() => <CreateScales />} />
           <Route exact path="/" key="/" render={() => <Home />} />
           <Route path="*" render={() => <GenericMessage message="404" />} />
         </Switch>

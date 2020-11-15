@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import API from "../apis/API";
 import { Redirect } from 'react-router-dom'
+import { UserMedia } from "tone";
+import UserInfo from './UserInfo.js'
 
 
 class Login extends Component {
@@ -40,6 +42,7 @@ class Login extends Component {
   //REED ADD
   renderRedirect = () => {
     if (this.state.redirect) {
+      UserInfo.setEmail(this.state.email)
       return <Redirect
                 to={{
                   pathname: "/profile",
@@ -94,6 +97,7 @@ class Login extends Component {
     return (
       <div className="container text-center">
         {this.renderRedirect()}
+        {this.props.location.state && <p>{this.props.location.state.error}</p>}
         <form className="m-0 p-3">
           <div className="row">
             <div className="col-lg-12 col-lg-offset-12 m-0 p-3">

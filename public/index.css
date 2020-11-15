@@ -171,7 +171,15 @@ body {
     font-size: 150%;
   }
   .fretboard-open{border-radius:30px;color: red}
-=======
+
 /*** End of Letters on Keys ***/
 
+#profile {
+  width: 100vw;
+  display: inline-block;
+}
 
+#scale-form {
+  width: 50vw;
+
+}
