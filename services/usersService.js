@@ -19,6 +19,7 @@ const post = async (req, res, next) => {
     });
 
     req.session.email = req.body.email  // NOT SURE IF NEEDED
+    console.log(req.session)
     //console.log(dbRes); // TODO remove
     res.status(200).end(); // TODO status code
   } catch (e) {
