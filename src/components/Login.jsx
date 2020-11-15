@@ -55,12 +55,10 @@ class Login extends Component {
     API.instance
       .post("/users", { email, password })
       .then((res) => {
-        console.log("REGISTER")
         console.log(res);
         this.setRedirect()
       })
       .catch((error) => {
-        this.setRedirect()  //REMOVE THIS LATER
         console.log(error);
       });
 
@@ -79,13 +77,11 @@ class Login extends Component {
         }
       )
       .then((res) => {
-        console.log("LOGIN")
         console.log(res);
         this.setRedirect()
         this.setState({ serverRes: res.data });
       })
       .catch((error) => {
-        this.setRedirect()  //REMOVE THIS LATER
         console.log(error);
       });
 
