@@ -1,52 +1,44 @@
 import React from 'react';
+import {Formik, Field, Form} from 'formik'
+import {octaveSetup} from './constants'
 
 export default function CreateScales(props) {
 
-    return (
-        <div id="scale-form">
-            <h4>Please Name Your Scale and Select 7 of the notes below</h4>
-            <form>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Name of Scale" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> C </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> D flat</label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> D </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> E flat </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> E </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> F </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> G flat</label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> G </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> A flat </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> A </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> B flat </label><br/>
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                        <label class="form-check-label" for="gridCheck1"> B </label><br/>
-                    </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+    //Create CheckBox Fields
+    const checkFields = octaveSetup.map(key => {
+        return (
+            <div>
+                <label>
+                    <Field type="checkbox" name="checked" value={key.note} />
+                    {key.note}
+                </label>
+                <br />
+            </div>
+
         )
+    })
+
+    return (
+        <Formik
+            initialValues={{
+                name: "",
+                checked: []
+            }}
+            onSubmit={values => {
+                alert(JSON.stringify(values))
+            }}
+        >
+            {
+                ({values}) => (
+                    <Form>
+                        <div id="checkbox-group">Checked</div>
+                        <div role="group" aria-labelledby="checkbox-group">
+                            {checkFields}
+                        </div>
+                        <button type="submit">Create</button>
+                    </Form>
+                )
+            }
+        </Formik>
+    )
 }
