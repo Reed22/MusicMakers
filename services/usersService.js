@@ -17,9 +17,6 @@ const post = async (req, res, next) => {
       email: req.body.email,
       password: hashedPassword,
     });
-
-    req.session.email = req.body.email  // NOT SURE IF NEEDED
-    console.log(req.session)
     //console.log(dbRes); // TODO remove
     res.status(200).end(); // TODO status code
   } catch (e) {
