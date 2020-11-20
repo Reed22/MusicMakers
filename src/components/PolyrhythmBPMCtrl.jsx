@@ -3,15 +3,12 @@ import React, { Component } from "react";
 class PolyrhythmBPMCtrl extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      BPM: "60",
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    const { value } = event.target;
+  handleChange(e) {
+    const { value } = e.target;
 
     let parsedValue = parseInt(value, 10);
 
@@ -25,12 +22,11 @@ class PolyrhythmBPMCtrl extends Component {
       parsedValue = 300;
     }
 
-    this.setState({
-      BPM: parsedValue,
-    });
+    this.props.onBPMChange(parsedValue);
   }
+
   render() {
-    const { BPM } = this.state;
+    const { BPM } = this.props;
 
     return (
       <div className="polyrhythm-bpm-ctrl">

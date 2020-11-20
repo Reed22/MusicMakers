@@ -109,6 +109,10 @@ body {
   width: var(--width);
 }
 
+.black:hover {
+  cursor: pointer;
+}
+
 .white {
   --width: 60px;
   background-color: white;
@@ -171,7 +175,3 @@ body {
     font-size: 150%;
   }
   .fretboard-open{border-radius:30px;color: red}
-=======
-/*** End of Letters on Keys ***/
-
-
