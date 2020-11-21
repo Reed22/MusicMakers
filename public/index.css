@@ -183,3 +183,12 @@ body {
   width: 50vw;
 
 }
+
+/*#check-container {
+  display: flex;
+  flex-direction: row;
+}*/
+
+#custom-scales-container {
+  text-align: center;
+}

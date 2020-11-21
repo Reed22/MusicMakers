@@ -24,6 +24,7 @@ const logIn = async (err, user, info, req, res, next) => {
 
   // place authenticated user into req.user
   req.logIn(user, function (err) {
+    console.log("logged in")
     if (err) {
       // server error
       res.status(500);

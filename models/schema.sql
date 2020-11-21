@@ -10,4 +10,13 @@ Create TABLE Users(
   updated_at DATETIME NOT NULL
 );
 
+--Scales
+DROP TABLE IF EXISTS Scales;
+CREATE TABLE Scales(
+  scale_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+);
+
 SET FOREIGN_KEY_CHECKS=1;

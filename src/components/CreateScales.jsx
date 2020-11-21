@@ -1,44 +1,18 @@
 import React from 'react';
-import {Formik, Field, Form} from 'formik'
-import {octaveSetup} from './constants'
+import CreateScalesForm from './CreateScalesForm'
 
 export default function CreateScales(props) {
 
-    //Create CheckBox Fields
-    const checkFields = octaveSetup.map(key => {
-        return (
-            <div>
-                <label>
-                    <Field type="checkbox" name="checked" value={key.note} />
-                    {key.note}
-                </label>
-                <br />
-            </div>
-
-        )
-    })
-
     return (
-        <Formik
-            initialValues={{
-                name: "",
-                checked: []
-            }}
-            onSubmit={values => {
-                alert(JSON.stringify(values))
-            }}
-        >
-            {
-                ({values}) => (
-                    <Form>
-                        <div id="checkbox-group">Checked</div>
-                        <div role="group" aria-labelledby="checkbox-group">
-                            {checkFields}
-                        </div>
-                        <button type="submit">Create</button>
-                    </Form>
-                )
-            }
-        </Formik>
+        <div id="custom-scales-container">
+            <h1 className="display-1">Create Your Own Custom Scales!</h1>
+            <ul className="list-group">
+                <li className="list-group-item">Select which notes you would like to have in your scale.</li>
+                <li className="list-group-item">Scales will be played in order starting from the top and ending at bottom</li>
+                <li className="list-group-item">Notes are separeted in groups of two octaves. The second octave notes will be played after the first octave notes</li>
+            </ul>
+            <br></br>
+            <CreateScalesForm />
+        </div>
     )
 }
