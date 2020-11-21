@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import { UserMedia } from "tone";
 import UserInfo from './UserInfo.js'
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,15 +12,11 @@ class Login extends Component {
       email: "",
       password: "",
       serverRes: "",
-      redirect: false  //REED ADD
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-    this.setRedirect = this.setRedirect.bind(this);
-    this.renderRedirect = this.renderRedirect.bind(this);
-
   }
 
   handleChange(e) {
@@ -33,25 +28,6 @@ class Login extends Component {
     });
   }
 
-  //REED ADD
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  }
-  //REED ADD
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      UserInfo.setEmail(this.state.email)
-      return <Redirect
-                to={{
-                  pathname: "/profile",
-                  state: { email: this.state.email }
-                }}
-            />
-    }
-  }
-
   handleRegister(e) {
     const { email, password } = this.state;
 
@@ -59,7 +35,6 @@ class Login extends Component {
       .post("/users", { email, password })
       .then((res) => {
         console.log(res);
-        this.setRedirect()
       })
       .catch((error) => {
         console.log(error);
@@ -81,7 +56,7 @@ class Login extends Component {
       )
       .then((res) => {
         console.log(res);
-        this.setRedirect()
+        UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
       })
       .catch((error) => {
@@ -96,8 +71,6 @@ class Login extends Component {
 
     return (
       <div className="container text-center">
-        {this.renderRedirect()}
-        {this.props.location.state && <p>{this.props.location.state.error}</p>}
         <form className="m-0 p-3">
           <div className="row">
             <div className="col-lg-12 col-lg-offset-12 m-0 p-3">

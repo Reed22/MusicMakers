@@ -34,11 +34,12 @@ export default function CreateScales(props) {
                     withCredentials: true,
                   }
                 )
-                //const post_req = new XMLHttpRequest()
-                //post_req.open("POST", "localhost:3001/scales")
-                //post_req.send(JSON.stringify(values))
-                //Sort check array so that the notes are in order
-                //post request to server, add Custom Scale w/ user_id
+                .then((res) => {
+                    console.log(res); //THIS ISN'T RUNNING
+                  })
+                .catch((error) => {
+                    console.log(error);
+                });
             }}
         >
             {
