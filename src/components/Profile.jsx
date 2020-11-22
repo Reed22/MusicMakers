@@ -16,7 +16,7 @@ export default function Profile(props) {
                 }}
             />
         )
-
+    
     return (
         <div className="container">
             <div className="profile">
