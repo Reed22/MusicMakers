@@ -1,5 +1,4 @@
 SET FOREIGN_KEY_CHECKS=0;
--- SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
 -- Users
 DROP TABLE IF EXISTS Users;
@@ -18,7 +17,8 @@ CREATE TABLE Scales(
   name VARCHAR(255) NOT NULL,
   created_at VARCHAR(255) NOT NULL,
   user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
 );
 
 --Notes
@@ -61,7 +61,8 @@ DROP TABLE IF EXISTS Scales_Notes;
 CREATE TABLE Scales_Notes(
   scale_id INT NOT NULL,
   note_id INT NOT NULL,
-  FOREIGN KEY (scale_id) REFERENCES Scales(scale_id), 
+  FOREIGN KEY (scale_id) REFERENCES Scales(scale_id)
+	ON DELETE CASCADE,
   FOREIGN KEY (note_id) REFERENCES Notes(note_id) 
 );
 

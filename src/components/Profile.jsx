@@ -3,9 +3,26 @@ import ProfileLists from './ProfileLists'
 import ProfileInfo from './ProfileInfo'
 import UserInfo from './UserInfo.js'
 import { Redirect } from 'react-router-dom'
+import API from "../apis/API";
 
 export default function Profile(props) {
     const [list, setList] = useState("Scales")
+    const [numScales, setNumScales] = useState(null)
+
+    //Grab Number Of Custom Scales and set numScales state
+    useEffect(()=> {
+        API.instance
+        .get(
+        "/scales/count",
+        {
+            withCredentials: true
+        }
+        )
+        .then((res) => { 
+            setNumScales(res.data[0].NumberOfScales)
+        })
+        .catch(error => { console.log(error); });
+    }, [])
 
     if(UserInfo.getEmail() === "") 
         return (
@@ -16,7 +33,7 @@ export default function Profile(props) {
                 }}
             />
         )
-    
+
     return (
         <div className="container">
             <div className="profile">
@@ -33,7 +50,7 @@ export default function Profile(props) {
                             <li className="nav-item">
                                 <a onClick={() => setList("Scales")} className="nav-link active" data-toggle="tab">
                                     <div className="nav-field">Custom Scales</div>
-                                    <div className="nav-value">5</div>
+                                    <div className="nav-value">{numScales}</div>
                                 </a>
                             </li>
                         </ul>

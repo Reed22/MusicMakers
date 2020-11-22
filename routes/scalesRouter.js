@@ -37,7 +37,6 @@ scalesRouter.post("/", function (req, res, next) {
 
 //Get User's scales
 scalesRouter.get("/", function(req, res, next){
-    console.log(req.user.user_id)
     if(req.user){
         const queryString = "SELECT Scales.name, Scales.created_at, Notes.note, Notes.priority, Notes.octave " +  
                             "FROM Scales JOIN Scales_Notes ON Scales.scale_id = Scales_Notes.scale_id " +
@@ -54,5 +53,18 @@ scalesRouter.get("/", function(req, res, next){
     else res.status(403).json({"error": "Not Logged In"})
 });
 
+scalesRouter.get("/count", function(req, res, next){
+    if(req.user){
+        const queryString = "SELECT COUNT(scale_id) AS NumberOfScales FROM Scales WHERE user_id = ?"
+        db.pool.query(queryString, req.user.user_id, function(err, rows, fields){
+            if(err){
+                console.log(err)
+                return
+            }
+            res.status(200).json(rows)
+        });
+    }
+    else res.status(403).json({"error": "Not Logged In"})
+});
 
 module.exports = scalesRouter;

@@ -47,7 +47,6 @@ export default function CustomScaleList(props) {
         }
         )
         .then((res) => { 
-            //console.log(res.data)
             const grouped_scales = formatResponse(res.data)
             setScales(grouped_scales.map(scale => <CustomScale name={scale.name} created={scale.created_at} notes={scale.notes}/>)) 
         })

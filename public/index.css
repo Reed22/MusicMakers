@@ -184,11 +184,10 @@ body {
 
 }
 
-/*#check-container {
-  display: flex;
-  flex-direction: row;
-}*/
-
 #custom-scales-container {
   text-align: center;
+}
+
+.custom-play {
+  margin-left: 1vw;
 }
