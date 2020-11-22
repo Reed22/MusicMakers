@@ -4,17 +4,21 @@ class PolyrhythmCtrl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rhythm: 1,
       disableIncrement: false,
       disableDecrement: true,
     };
 
     this.handleIncrementClick = this.handleIncrementClick.bind(this);
     this.handleDecrementClick = this.handleDecrementClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onRhythmChange(e.target.value);
   }
 
   handleIncrementClick() {
-    const { rhythm } = this.state;
+    const { rhythm } = this.props;
 
     if (rhythm === 11) {
       this.setState({
@@ -26,13 +30,11 @@ class PolyrhythmCtrl extends Component {
       });
     }
 
-    this.setState(() => ({
-      rhythm: rhythm + 1,
-    }));
+    this.props.onRhythmChange(rhythm + 1);
   }
 
   handleDecrementClick() {
-    const { rhythm } = this.state;
+    const { rhythm } = this.props;
 
     if (rhythm === 2) {
       this.setState({
@@ -44,15 +46,14 @@ class PolyrhythmCtrl extends Component {
       });
     }
 
-    this.setState(() => ({
-      rhythm: rhythm - 1,
-    }));
+    this.props.onRhythmChange(rhythm - 1);
   }
 
   andleDecrementClick() {}
 
   render() {
-    const { rhythm, disableIncrement, disableDecrement } = this.state;
+    const { disableIncrement, disableDecrement } = this.state;
+    const { rhythm } = this.props;
 
     return (
       <div className="polyrhythm-ctrl">

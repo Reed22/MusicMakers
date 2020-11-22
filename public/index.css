@@ -109,6 +109,10 @@ body {
   width: var(--width);
 }
 
+.black:hover {
+  cursor: pointer;
+}
+
 .white {
   --width: 60px;
   background-color: white;
