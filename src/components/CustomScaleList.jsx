@@ -43,12 +43,7 @@ export default function CustomScaleList(props) {
     //GET all scales from user
     useEffect(()=> {
         API.instance
-        .get(
-        "/scales",
-        {
-            withCredentials: true
-        }
-        )
+        .get("/scales", { withCredentials: true })
         .then((res) => { 
             const grouped_scales = formatResponse(res.data)
             setScales(grouped_scales.map(scale => <CustomScale name={scale.name} created={scale.created_at} notes={scale.notes}/>)) 

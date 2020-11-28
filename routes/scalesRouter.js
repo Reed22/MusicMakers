@@ -2,6 +2,10 @@ const express = require("express");
 const scalesRouter = express.Router();
 const db = require('../models/db')
 const moment = require('moment')
+const bodyParser = require('body-parser');
+
+scalesRouter.use(bodyParser.urlencoded({ extended: false }));
+scalesRouter.use(bodyParser.json());
 
 // Create scale
 scalesRouter.post("/", async function (req, res, next) {
