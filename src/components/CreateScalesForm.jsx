@@ -5,7 +5,7 @@ import API from "../apis/API";
 
 export default function CreateScales(props) {
     const [name, setName] = useState(null)
-
+    const [error, setError] = useState(null)
     //Create CheckBox Fields
     const generateCheckFields = (octave) => {
         return octaveSetup.map(key => {
@@ -22,22 +22,39 @@ export default function CreateScales(props) {
 
     return (
         <div>
+            {error && <h3 class="display-4">{error}</h3>}
+            {name && <h3 class="display-4">Successfully Created {name}</h3>}
             <Formik
                 initialValues={{
                     name: "",
                     checked: []
                 }}
                 onSubmit={values => {
-                    API.instance
-                    .post(
-                    "/scales",
-                    values,
-                    {
-                        withCredentials: true
+                    //Check and make sure at least one checkbox has been checked
+                    if(values.checked.length == 0){
+                        setName(null)
+                        setError("Please select at least one note")
                     }
-                    )
-                    .then((res) => { setName(res.data.name) })
-                    .catch((error) => { console.log(error); });
+                    else {
+                        API.instance
+                        .post(
+                        "/scales",
+                        values,
+                        {
+                            withCredentials: true
+                        }
+                        )
+                        .then((res) => {
+                            setName(res.data.name)
+                            setError(null) 
+                        })
+                        .catch((error) => { 
+                            if(error){
+                                setError(error.response.data)
+                                setName(null)
+                            }
+                        });
+                    }
                 }}
             >
                 {
@@ -59,7 +76,6 @@ export default function CreateScales(props) {
                     )
                 }
             </Formik>
-            {name && <p>Successfully Created {name}</p>}
         </div>
 
     )

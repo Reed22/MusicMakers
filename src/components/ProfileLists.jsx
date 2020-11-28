@@ -11,9 +11,6 @@ export default function ProfileLists(props) {
             <div className="tab-content p-0">
                 <div className="tab-pane fade active show" id="profile-followers">
                     {props.list == "Quiz" ? <QuizList /> : <CustomScaleList />}
-                    <div className="text-center p-3">
-                        <a href="#" className="text-dark text-decoration-none">Show more <b className="caret"></b></a>
-                    </div>
                 </div>
             </div>
         </div>
