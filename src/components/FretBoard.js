@@ -1,7 +1,7 @@
 import React,  {useState} from 'react'
 import {Component} from 'react'
 import * as Tone from 'tone'
-//import styles from './fret.module.css'
+import FretBoardNote from './FretboardNote'
 
 class FretBoard extends Component {
     constructor() {
@@ -9,279 +9,216 @@ class FretBoard extends Component {
         this.state = {
             clicked : false,
             grade : null,
-            startQuiz:false
+            startQuiz:false,
+            noteSelectionCount:0,
+            currentNote:"",
+            noteIds:[],
+            noteColor: "fretboard-box",
+            noteColorFound : "fretboard-box-green",
+            scaleQuiz : false,
+            noteQuiz : false,
+            displayNote:false,
+            CmajPent : ["C","D","E","G","A"],
+            DmajPent: ["D","E","F#","A","B"],
+            EmajPent :  ["E","F#","G#","B","C#"],
+            FmajPent : ["F","G","A","C","D"],
+            GmajPent : ["G","A","B","D","E"],
+            AmajPent : ["A","B","C#","E","F#"]
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.createNoteQuiz = this.createNoteQuiz.bind(this)
+        this.createScaleQuiz = this.createScaleQuiz.bind(this)
+        //this.noteInScale = this.noteInScale.bind(this)
 
+    }
+    createNoteQuiz(){
+        var noteSelector = ["C","C#/Db","D","D#/Eb","E","F","F#/Gb","G",,"G#/Ab","A","A#/Bb","B"]
+        var maximum = 11
+        var minimum = 0
+        var randomNumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
+        //console.log( noteSelector[randomNumber])
+        this.setState({currentNote: noteSelector[randomNumber],scaleQuiz:false,arpQuiz:true},()=>{console.log(this.state.currentNote)})
+    }
+    createScaleQuiz(){
+        var noteSelector = ["C","D","E","F","G","A"]
+        var maximum = 5
+        var minimum = 0
+        var randomNumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
+        console.log( noteSelector[randomNumber])
+
+        if (noteSelector[randomNumber] == "C"){  this.setState({currentScale : "CmajPent"})}
+        else if (noteSelector[randomNumber] == "D"){  this.setState({currentScale : "DmajPent"})}
+        else if (noteSelector[randomNumber] == "E"){   this.setState({currentScale : "EmajPent"})}
+        else if (noteSelector[randomNumber] == "F"){   this.setState({currentScale : "FmajPent"})}
+        else if (noteSelector[randomNumber] == "G"){    this.setState({currentScale : "GmajPent"})}
+        else if (noteSelector[randomNumber] == "A"){   this.setState({currentScale : "AmajPent"})}
+        
+        this.setState({currentNote: noteSelector[randomNumber],scaleQuiz:true,arpQuiz:false }/*,()=>{console.log(this.state.currentNote, this.state.currentScale)}*/)
+    
     }
     handleClick(event){
-        console.log(event.target.dataset.value)//.dataValue)
+        //console.log(event.target.dataset.value)//.dataValue)
+        if(event.target.dataset.value == this.state.currentNote && !this.state.noteIds.includes(event.target.id) ){
+            this.state.noteIds.push(event.target.id)
+            this.setState(prevState=>{
+                return {
+                    noteSelectionCount : (prevState.noteSelectionCount + 1)}
+            })
+        }
     }
     handleChange(event) {
-        if (event.target.id == 1){
+        if (event.target.id == 2){
             this.setState(prevState =>{
                 return {
-                    clicked: !(prevState.clicked)
+                    startQuiz: !(prevState.startQuiz), 
+                    currentNote:"",
+                    noteSelectionCount:0,
+                    noteIds:[]
                 }
-            })
-            //console.log(this.state.clicked)
+            },()=>{this.createNoteQuiz()})
         }
-        else if (event.target.id == 2){
-            this.setState(prevState =>{
-                return {
-                    startQuiz: !(prevState.startQuiz)
-                }
-            })
-            //console.log(this.state.clicked)
-        }
-        /*else{
-            if (event.target.id == 2){
-                this.setState({
-                    grade: "Correct!"
-                }, ()=> {//put prints in callback as set state is async
-                    console.log(this.state,"grd") 
-                    }
-                )
-            }
-            else{
-                this.setState({
-                    grade: "Wrong, answer is "+ String(this.state.played)
-                }, ()=> {//put prints in callback as set state is async
-
-                    console.log(this.state,"grd") 
         
-                    }
-                )
-            }
-
-        }*/
-
+        else if (event.target.id == 3){
+            this.createScaleQuiz()
+            /*this.setState(prevState =>{
+                return {
+                     
+                }
+            }, ()=> {
+                console.log(this.state.displayNote,"qstion") 
+            })  */        
+        
+        }
+        else if (event.target.id == 4){
+            this.setState(prevState =>{
+                return {
+                    displayNote :!prevState.displayNote
+                }
+            }/*, ()=> {
+                //console.log(this.state.displayNote,"qstion") 
+            }*/)          
+        
+        }
     }
-    
-  //  playNote(){ } 
+
     render(){
-/*        const wrapper ={
-            display: "grid",
-            gridTemplateColumns:" 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%",
-            gridTemplateRows:" 12% 12% 12% 12% 12% 12% 12%",
-            gridGap: "5px",
-            backgroundColor:" #fff",
-            color: "#444",
-          }
-          
-          const fretboard-box = {
-            backgroundColor:" #444",
-            color: "#fff",
-            borderRadius:" 5px",
-            padding: "20px",
-            fontSize: "150%",
-          }*/
+
         return(
             <div>
-                <button id="1" onClick={this.handleChange}>Show Fretboard</button>
-                {this.state.clicked  &&
-                <div class="fretboard-wrapper">
-                    <div data-value = "E" class="fretboard-box fretboard-open">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
+
+            
+
+                <div>
+                    <button id="2" onClick={this.handleChange}>Take Signle Note Quiz</button>
+                    <button id="3" onClick={this.handleChange}>Take Penatonic Scale Quiz</button>
+                    <h3 >Click All {this.state.scaleQuiz ? this.state.currentScale : this.state.currentNote} Notes on the Fretboard</h3>
+                    <h3>Notes Found = {this.state.noteSelectionCount}</h3>                 
+                    <button id="4" onClick={this.handleChange}>Display Notes</button>
+                    <div className="fretboard-wrapper">
+                        <div data-value = "E" id="1-0" class="fretboard-box fretboard-open">E</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
 
 
 
-                    <div class="fretboard-box fretboard-open">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
+                        <div class="fretboard-box fretboard-open"id="2-0" onClick={this.handleClick} data-value = "A">A</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote ={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+        
 
 
-
-                    <div class="fretboard-box fretboard-open">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-
-
-                    <div class="fretboard-box fretboard-open">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
+                        <div class="fretboard-box fretboard-open"id="3-0"onClick={this.handleClick} data-value = "D">D</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote ={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+      
 
 
 
 
-                    <div class="fretboard-box fretboard-open">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
+                        <div class="fretboard-box fretboard-open"id="4-0"onClick={this.handleClick} data-value = "G">G</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote ={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                  
 
 
-
-                    <div class="fretboard-box fretboard-open">E</div>
-                    <div class="fretboard-box">F</div>
-                    <div class="fretboard-box">F#/Gb</div>
-                    <div class="fretboard-box">G</div>
-                    <div class="fretboard-box">G#/Ab</div>
-                    <div class="fretboard-box">A</div>
-                    <div class="fretboard-box">A#/Bb</div>
-                    <div class="fretboard-box">B</div>
-                    <div class="fretboard-box">C</div>
-                    <div class="fretboard-box">C#/Db</div>
-                    <div class="fretboard-box">D</div>
-                    <div class="fretboard-box">D#/Eb</div>
-                    <div class="fretboard-box">E</div>
-
-
-  
-                </div>
-                }
-                <button id="2" onClick={this.handleChange}>Take Fretboard Quiz</button>
-                {this.state.startQuiz  &&
-                <div className="fretboard-wrapper">
-                    <div data-value = "E" class="fretboard-box fretboard-open">E</div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "G"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "A"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "B"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "D"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box" onClick={this.handleClick} data-value = "E"></div>
-
-
-
-                    <div class="fretboard-box fretboard-open"onClick={this.handleClick} data-value = "A">A</div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "B"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "E"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A"></div>
-
-
-
-                    <div class="fretboard-box fretboard-open"onClick={this.handleClick} data-value = "D">D</div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "E"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "B"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D"></div>
-
-
-                    <div class="fretboard-box fretboard-open"onClick={this.handleClick} data-value = "G">G</div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "B"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "E"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G"></div>
-
-
-
-                    <div class="fretboard-box fretboard-open"onClick={this.handleClick} data-value = "B">B</div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "E"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "B"></div>
-
-
-
-                    <div class="fretboard-box fretboard-open"onClick={this.handleClick} data-value = "E">E</div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "F#/Gb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "G#/Ab"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "A#/Bb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "B"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "C#/Db"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "D#/Eb"></div>
-                    <div class="fretboard-box"onClick={this.handleClick} data-value = "E"></div>
-
-  
-                </div>
-                }
-            </div>
+                        <div class="fretboard-box fretboard-open"id="5-0"onClick={this.handleClick} data-value = "B">B</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote ={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
          
-        )
+
+
+                        <div data-value = "E" id="1-0" class="fretboard-box fretboard-open">E</div>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F" currentNote ={this.state.currentNote == "F" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="F#/Gb" currentNote ={this.state.currentNote == "F#Gb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G" currentNote ={this.state.currentNote == "G" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="G#/Ab" currentNote ={this.state.currentNote == "G#/Ab" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A" currentNote ={this.state.currentNote == "A" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="A#/Bb" currentNote ={this.state.currentNote == "A#/Bb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="B" currentNote ={this.state.currentNote == "B" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C" currentNote ={this.state.currentNote == "C" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="C#/Db" currentNote ={this.state.currentNote == "C#/Db" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D" currentNote ={this.state.currentNote == "D" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="D#/Eb" currentNote ={this.state.currentNote == "D#/Eb" ? true : false}/>
+                        <FretBoardNote displayNote={this.state.displayNote} currentScale = {this.state.currentScale}  scales = {this.state.scaleQuiz} note="E" currentNote ={this.state.currentNote == "E" ? true : false}/>
+
+
+    
+                    </div>
+                </div>
+                
+            </div>
+            )
+        }
     }
-}
 export default FretBoard

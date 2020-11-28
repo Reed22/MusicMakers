@@ -109,6 +109,10 @@ body {
   width: var(--width);
 }
 
+.black:hover {
+  cursor: pointer;
+}
+
 .white {
   --width: 60px;
   background-color: white;
@@ -181,7 +185,6 @@ body {
 
 #scale-form {
   width: 50vw;
-
 }
 
 #custom-scales-container {
@@ -191,3 +194,4 @@ body {
 .custom-play {
   margin-left: 1vw;
 }
+
