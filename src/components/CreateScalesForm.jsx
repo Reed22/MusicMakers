@@ -7,18 +7,18 @@ export default function CreateScales(props) {
     const [name, setName] = useState(null)
     const [error, setError] = useState(null)
     //Create CheckBox Fields
-    const generateCheckFields = (octave) => {
+     const generateCheckFields = (octave) => {
         return octaveSetup.map(key => {
             return (
-                <div className="form-check">
-                    <label className="form-check-label">
-                        <Field className="form-check-input" type="checkbox" name="checked" value={octave + key.note} />
-                        {key.note}
+                <div class="form-check">
+                    <label className="form-check-label" for="materialUnchecked">
+                    <Field className="form-check-input" id="materialUnchecked" type="checkbox" name="checked" value={octave + key.note} />
+                    {key.note}
                     </label>
                 </div>
             )
         })
-    }
+    } 
 
     return (
         <div>
@@ -62,12 +62,12 @@ export default function CreateScales(props) {
                         <Form>
                             <Field type="text" name="name" placeholder="Scale Name" required/>
                             <div id="check-container">
-                                <div id="checkbox-group">First Octave</div>
                                 <div role="group" aria-labelledby="checkbox-group">
+                                    <h4>First Octave</h4>
                                     {generateCheckFields(1)}
                                 </div>
-                                <div id="checkbox-group">Second Octave</div>
                                 <div role="group" aria-labelledby="checkbox-group">
+                                    <h4>Second Octave</h4>
                                     {generateCheckFields(2)}
                                 </div>
                             </div>
@@ -77,6 +77,5 @@ export default function CreateScales(props) {
                 }
             </Formik>
         </div>
-
     )
 }
