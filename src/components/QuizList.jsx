@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import API from "../apis/API";
+import QuizScore from './QuizScore'
 
 export default function QuizList(props) {
+    const [quizzes, setQuizzes] = useState([])
+
+    //GET all quizes from user
+    useEffect(()=> {
+        API.instance
+        .get("/quizzes", { withCredentials: true })
+        .then((res) => { 
+            console.log(typeof(res.data))
+            setQuizzes(res.data.map(<QuizScore />))
+        })
+        .catch(error => { console.log(error); });
+    }, [])
 
     return (
-        <div className="list-group">
-            <div className="list-group-item d-flex align-items-center">
-                <div className="flex-fill pl-3 pr-3">
-                    <div><a href="#" className="text-dark font-weight-600">Quiz Type</a></div>
-                    <div className="text-muted fs-13px">Time Taken</div>
-                </div>
-                <div className="text-muted fs-13px">Score</div>
-            </div>
+        <div>
+            {quizzes}
         </div>
     );
 }
