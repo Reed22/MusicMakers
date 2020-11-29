@@ -71,7 +71,7 @@ export default function CreateScales(props) {
                                     {generateCheckFields(2)}
                                 </div>
                             </div>
-                            <button type="submit">Create</button>
+                            <button className="btn btn-success" type="submit">Create</button>
                         </Form>
                     )
                 }
