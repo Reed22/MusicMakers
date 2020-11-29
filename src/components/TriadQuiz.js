@@ -4,6 +4,8 @@
 
 import React,  {useState} from 'react'
 import {Component} from 'react'
+import API from "../apis/API";
+
 function     shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -154,7 +156,23 @@ class TriadQuiz extends Component {
 
         if (this.state.questionNumber < 10){
             this.setState({gotCorrectAnswer:false})}
-        else{this.setState({gotCorrectAnswer:false,score:0,questionNumber:0})}
+        else{
+            //Save this.state.score !!!!!!!!!!!!!!!!!!!!!!!!!!
+            API.instance
+            .post("/quizzes", 
+            { 
+                score: this.state.score,
+                type: "Triad"
+            })
+            .then((res) => {
+              console.log(res);
+              this.setRedirect()
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+            this.setState({gotCorrectAnswer:false,score:0,questionNumber:0})
+        }
 
         var answers = []    
         if(this.state.seventh == false){
