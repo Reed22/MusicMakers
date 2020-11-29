@@ -12,11 +12,14 @@ Create TABLE Users(
 
 -- Quizzes
 DROP TABLE IF EXISTS Quizzes;
-Create TABLE Quizzes(
+CREATE TABLE Quizzes(
   quiz_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   quiz_type VARCHAR(255) NOT NULL,
-  created_at DATETIME NOT NULL,
-  updated_at DATETIME NOT NULL
+  created_at VARCHAR(255) NOT NULL,
+  score VARCHAR(255) NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
 );
 
 SET FOREIGN_KEY_CHECKS=1;
