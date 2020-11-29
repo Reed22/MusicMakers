@@ -163,6 +163,9 @@ class TriadQuiz extends Component {
             { 
                 score: this.state.score,
                 type: "Triad"
+            },
+            {
+                withCredentials: true
             })
             .then((res) => {
               console.log(res);
