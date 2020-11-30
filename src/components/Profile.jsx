@@ -3,6 +3,8 @@ import ProfileLists from './ProfileLists'
 import ProfileInfo from './ProfileInfo'
 import UserInfo from './UserInfo.js'
 import { Redirect } from 'react-router-dom'
+import API from "../apis/API";
+
 
 export default function Profile(props) {
     const [list, setList] = useState("Scales")
@@ -42,7 +44,7 @@ export default function Profile(props) {
                             <li className="nav-item">
                                 <a onClick={() => setList("Quiz")} className="nav-link" data-toggle="tab">
                                     <div className="nav-field">Quiz Scores</div>
-                                    <div className="nav-value">382</div>
+                                    <div className="nav-value">{numQuizzes}</div>
                                 </a>
                             </li>
                             <li className="nav-item">

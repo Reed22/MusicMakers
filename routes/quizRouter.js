@@ -30,4 +30,19 @@ quizRouter.get('/', function(req, res, next){
     })
 })
 
+quizRouter.get("/count", function(req, res, next){
+    if(req.user){
+        const queryString = "SELECT COUNT(quiz_id) AS NumberOfQuizzes FROM Quizzes WHERE user_id = ?"
+        db.pool.query(queryString, req.user.user_id, function(err, rows, fields){
+            if(err){
+                console.log(err)
+                return
+            }
+            res.status(200).json(rows)
+        });
+    }
+    else res.status(403).json({"error": "Not Logged In"})
+});
+
+
 module.exports = quizRouter;
