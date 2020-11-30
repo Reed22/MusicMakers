@@ -6,6 +6,21 @@ import { Redirect } from 'react-router-dom'
 
 export default function Profile(props) {
     const [list, setList] = useState("Scales")
+    const [numQuizzes, setNumQuizzes] = useState(null)
+    //Grab Number Quizzes
+    useEffect(()=> {
+        API.instance
+        .get(
+        "/quizzes/count",
+        {
+            withCredentials: true
+        }
+        )
+        .then((res) => { 
+            setNumQuizzes(res.data[0].NumberOfQuizzes)
+        })
+        .catch(error => { console.log(error); });
+    }, [])
 
     if(UserInfo.getEmail() === "") 
         return (
