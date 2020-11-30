@@ -135,9 +135,8 @@ body {
   cursor: pointer;
 }
 
-/*** Start of Letters on Keys ***/
 .key p {
-  position: absolute;
+  position: relative;
   font-size: 20px;
 }
 
@@ -176,7 +175,6 @@ body {
   }
   .fretboard-open{border-radius:30px;color: red}
 
-/*** End of Letters on Keys ***/
 
 #profile {
   width: 100vw;
@@ -185,5 +183,20 @@ body {
 
 #scale-form {
   width: 50vw;
-
 }
+
+#custom-scales-container {
+  text-align: center;
+}
+
+.custom-play {
+  margin-left: 1vw;
+}
+
+#check-container {
+  padding-top: 2vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
