@@ -5,19 +5,13 @@ import QuizScore from './QuizScore'
 export default function QuizList(props) {
     const [quizzes, setQuizzes] = useState([])
 
-    const formatResponse = (data) => {
-        data.forEach(quiz => {
-            new_data.push(quiz)
-        })
-        return new_data
-    }
     //GET all quizes from user
     useEffect(()=> {
         API.instance
         .get("/quizzes", { withCredentials: true })
         .then((res) => { 
-            console.log(typeof(res.data))
-            //setQuizzes(res.data.map(<QuizScore />))
+            //console.log(typeof(res.data))
+            setQuizzes(res.data.map( data => <QuizScore type={data.quiz_type} score={data.score} time={data.created_at}/>))
         })
         .catch(error => { console.log(error); });
     }, [])
