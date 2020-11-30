@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import { UserMedia } from "tone";
 import UserInfo from './UserInfo.js'
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -80,8 +79,7 @@ class Login extends Component {
         }
       )
       .then((res) => {
-        console.log(res);
-        this.setRedirect()
+        UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
       })
       .catch((error) => {

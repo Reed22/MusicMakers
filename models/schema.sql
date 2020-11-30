@@ -17,9 +17,35 @@ CREATE TABLE Quizzes(
   quiz_type VARCHAR(255) NOT NULL,
   created_at VARCHAR(255) NOT NULL,
   score VARCHAR(255) NOT NULL,
+
+  -- Scales
+DROP TABLE IF EXISTS Scales;
+CREATE TABLE Scales(
+  scale_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  created_at VARCHAR(255) NOT NULL,
   user_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
     ON DELETE CASCADE
+);
+
+-- Notes
+DROP TABLE IF EXISTS Notes;
+CREATE TABLE Notes(
+  note_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  note VARCHAR(255) NOT NULL,
+  priority INT NOT NULL,
+  octave INT NOT NULL
+);
+
+-- Scales_Notes
+DROP TABLE IF EXISTS Scales_Notes;
+CREATE TABLE Scales_Notes(
+  scale_id INT NOT NULL,
+  note_id INT NOT NULL,
+  FOREIGN KEY (scale_id) REFERENCES Scales(scale_id)
+	ON DELETE CASCADE,
+  FOREIGN KEY (note_id) REFERENCES Notes(note_id) 
 );
 
 SET FOREIGN_KEY_CHECKS=1;
