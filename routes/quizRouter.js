@@ -25,8 +25,8 @@ quizRouter.post('/', function(req, res, next){
 quizRouter.get('/', function(req, res, next){
     const queryString = 'SELECT quiz_type, score, created_at FROM Quizzes WHERE user_id = ?'
     db.pool.query(queryString, req.user.user_id, function(err, rows, fields){
-        console.log(rows)
-        res.status(200).send(rows)
+        console.log(typeof(rows))
+        res.status(200).json(rows)
     })
 })
 

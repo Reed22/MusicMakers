@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
-export default function QuizList(props) {
+export default function QuizScore(props) {
 
     return (
         <div className="list-group">
