@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PolyrhythmCtrl from "./PolyrhythmCtrl";
-import PolyrhythmBPMCtrl from "./PolyrhythmBPMCtrl";
 import * as Tone from "tone";
 
 class Polyrhythm extends Component {
@@ -9,7 +8,6 @@ class Polyrhythm extends Component {
     this.state = {
       rhythmA: 1,
       rhythmB: 1,
-      BPM: 60,
     };
 
     this.handleRhythmAChange = this.handleRhythmAChange.bind(this);
@@ -30,7 +28,7 @@ class Polyrhythm extends Component {
   }
 
   setRhythmLoops() {
-    const { BPM, rhythmA, rhythmB } = this.state;
+    const { rhythmA, rhythmB } = this.state;
 
     const priorLoops = Object.keys(Tone.Transport._scheduledEvents);
 
@@ -44,32 +42,35 @@ class Polyrhythm extends Component {
 
     // loopA plays over 0.1 seconds at the current BPM (second rhythm)
     new Tone.Loop((time) => {
-      synthA.triggerAttackRelease("A4", 0.1, time);
-    }, 0.5).start(0);
+      synthA.triggerAttackRelease("A4", 0.01, time);
+    }, 1).start(0);
     // loopB plays over 0.1 seconds (first rhythm)
     new Tone.Loop((time) => {
-      synthB.triggerAttackRelease("C4", 0.1, time);
-    }, (0.5 * rhythmB) / rhythmA).start(0);
+      synthB.triggerAttackRelease("B4", 0.01, time);
+    }, rhythmB / rhythmA).start(0);
+  }
 
-    if (BPM === 0) {
-      Tone.Transport.bpm.value = BPM;
-      Tone.Transport.pause();
-    } else {
-      Tone.Transport.bpm.value = BPM;
-      Tone.Transport.start();
-    }
+  togglePolyrhyhtm() {
+    Tone.Transport.toggle();
+  }
+
+  componentDidMount() {
+    // create two monophonic synths
+    const synthA = new Tone.FMSynth().toDestination();
+    const synthB = new Tone.AMSynth().toDestination();
+
+    // loopA plays over 0.1 seconds at the current BPM (second rhythm)
+    new Tone.Loop((time) => {
+      synthA.triggerAttackRelease("A4", 0.01, time);
+    }, 1).start(0);
+    // loopB plays over 0.1 seconds (first rhythm)
+    new Tone.Loop((time) => {
+      synthB.triggerAttackRelease("B4", 0.01, time);
+    }, 1).start(0);
   }
 
   render() {
-    const { rhythmA, rhythmB, BPM } = this.state;
-
-    // debugging
-    /*
-    console.log(this.state);
-    console.log("unscheduled events");
-    console.log(Tone.Transport._scheduledEvents);
-    console.log(Tone.Transport.bpm.value);
-    */
+    const { rhythmA, rhythmB } = this.state;
 
     return (
       <div className="bg-white polyrhythm">
@@ -77,7 +78,9 @@ class Polyrhythm extends Component {
           onRhythmChange={this.handleRhythmAChange}
           rhythm={rhythmA}
         />
-        <PolyrhythmBPMCtrl onBPMChange={this.handleBPMChange} BPM={BPM} />
+        <div className="polyrhythm-button" onClick={this.togglePolyrhyhtm}>
+          Toggle
+        </div>
         <PolyrhythmCtrl
           onRhythmChange={this.handleRhythmBChange}
           rhythm={rhythmB}

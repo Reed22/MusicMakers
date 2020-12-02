@@ -20,7 +20,7 @@ class PolyrhythmCtrl extends Component {
   handleIncrementClick() {
     const { rhythm } = this.props;
 
-    if (rhythm === 11) {
+    if (rhythm === 5) {
       this.setState({
         disableIncrement: true,
       });
@@ -40,7 +40,7 @@ class PolyrhythmCtrl extends Component {
       this.setState({
         disableDecrement: true,
       });
-    } else if (rhythm === 12) {
+    } else if (rhythm === 6) {
       this.setState({
         disableIncrement: false,
       });
@@ -53,7 +53,7 @@ class PolyrhythmCtrl extends Component {
 
   render() {
     const { disableIncrement, disableDecrement } = this.state;
-    const { rhythm } = this.props;
+    const { rhythm, id } = this.props;
 
     return (
       <div className="polyrhythm-ctrl">
