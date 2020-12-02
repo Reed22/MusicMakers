@@ -157,7 +157,7 @@ class TriadQuiz extends Component {
         if (this.state.questionNumber < 10){
             this.setState({gotCorrectAnswer:false})}
         else {
-            //Save this.state.score !!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Send post request to save quiz score
             API.instance
             .post("/quizzes", 
             { 

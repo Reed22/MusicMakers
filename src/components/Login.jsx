@@ -81,6 +81,9 @@ class Login extends Component {
       .then((res) => {
         UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
+        //REDIRECT?
+        this.setRedirect()
+        
       })
       .catch((error) => {
         console.log(error);
