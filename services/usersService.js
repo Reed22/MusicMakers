@@ -10,6 +10,7 @@ const post = async (req, res, next) => {
     console.log("same email foud")
     //res.status(400).send({"Error": "Account with this email already exists"})
   } */
+
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const dbRes = usersModel.post({

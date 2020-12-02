@@ -10,7 +10,15 @@ Create TABLE Users(
   updated_at DATETIME NOT NULL
 );
 
--- Scales
+-- Quizzes
+DROP TABLE IF EXISTS Quizzes;
+CREATE TABLE Quizzes(
+  quiz_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  quiz_type VARCHAR(255) NOT NULL,
+  created_at VARCHAR(255) NOT NULL,
+  score VARCHAR(255) NOT NULL,
+
+  -- Scales
 DROP TABLE IF EXISTS Scales;
 CREATE TABLE Scales(
   scale_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

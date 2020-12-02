@@ -8,6 +8,22 @@ import API from "../apis/API";
 export default function Profile(props) {
     const [list, setList] = useState("Scales")
     const [numScales, setNumScales] = useState(null)
+    const [numQuizzes, setNumQuizzes] = useState(null)
+    
+    //Grab Number Quizzes and set numQuizzes state
+    useEffect(()=> {
+        API.instance
+        .get(
+        "/quizzes/count",
+        {
+            withCredentials: true
+        }
+        )
+        .then((res) => { 
+            setNumQuizzes(res.data[0].NumberOfQuizzes)
+        })
+        .catch(error => { console.log(error); });
+    }, [])
 
     //Grab Number Of Custom Scales and set numScales state
     useEffect(()=> {
@@ -44,7 +60,7 @@ export default function Profile(props) {
                             <li className="nav-item">
                                 <a onClick={() => setList("Quiz")} className="nav-link" data-toggle="tab">
                                     <div className="nav-field">Quiz Scores</div>
-                                    <div className="nav-value">382</div>
+                                    <div className="nav-value">{numQuizzes}</div>
                                 </a>
                             </li>
                             <li className="nav-item">
