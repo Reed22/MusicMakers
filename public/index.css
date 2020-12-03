@@ -161,19 +161,31 @@ body {
     display: grid;
     grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
     grid-template-rows: 12% 12% 12% 12% 12% 12% 12%;
-    grid-gap: 5px;
-    background-color: #fff;
+    grid-gap: 3px;
     color: #444;
+    
   }
   
   .fretboard-box {
     background-color: #444;
-    color: #fff;
-    border-radius: 5px;
+    color: rgb(20, 20, 16);
+    border-radius: 1px;
     padding: 20px;
     font-size: 150%;
+    text-align: center;
+    border-color: rgb(5, 4, 4);
+    
   }
-  .fretboard-open{border-radius:30px;color: red}
+  .fretboard-box-green {
+    background-color: rgb(26, 177, 119);
+    color: rgb(19, 9, 9);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    font-size: 150%;
+  }
+  .fretboard-open{
+    border-radius:30px;color: red}
 
 
 #profile {
