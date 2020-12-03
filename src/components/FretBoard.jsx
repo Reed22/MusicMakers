@@ -2,6 +2,7 @@ import React,  {useState} from 'react'
 import {Component} from 'react'
 import * as Tone from 'tone'
 import FretBoardNote from './FretboardNote'
+import API from "../apis/API";
 
 class FretBoard extends Component {
     constructor() {
@@ -143,6 +144,25 @@ class FretBoard extends Component {
     handleChange(event) {
         
         if (event.target.id == 1 || event.target.id == 5){
+            //If user hits "Submit Quiz"
+            if(event.target.id == 5){
+                const denominator = this.state.noteQuiz ? 6 : 30
+                const quiz_score = this.state.noteSelectionCount / denominator
+                //* 10
+                //Send Post Request to save quiz
+                API.instance
+                .post("/quizzes", 
+                { 
+                    score: quiz_score * 10,
+                    type: this.state.noteQuiz ? "Fretboard: Single Notes" : "Fretboard: Penatonic Scale"
+                },
+                {
+                    withCredentials: true
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
             this.revertState()
             this.setState(prevState =>{
                 return {
@@ -154,6 +174,7 @@ class FretBoard extends Component {
                 }
             })
         }
+        //Create Note Quiz
         else if (event.target.id == 2){
             this.revertState()
             this.setState({
@@ -162,6 +183,7 @@ class FretBoard extends Component {
                     clickCounter:0                
             },()=>{this.createNoteQuiz()})
         }
+        //Create Scale Quiz
         else if (event.target.id == 3){
             this.revertState()
             this.setState({
@@ -187,48 +209,68 @@ class FretBoard extends Component {
         }
         var idNum = "isActive" + idNumber
         this.setState(prevState => {return { clickCounter : prevState.clickCounter + 1}})
+        
+        //Penatonic Quiz
         if(this.state.scaleQuiz == true){
             if (this.state.currentScale == "AmajPent"){
+                //AmajPent Correct Answer
                 if (this.state.AmajPent.includes(note)){
                     console.log("Amaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
             }           
             else if (this.state.currentScale == "CmajPent"){
+                //CmajPent Correct Answer
                 if (this.state.CmajPent.includes(note)){
                     console.log("cmaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
-                }  
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
+            }  
             else if (this.state.currentScale == "DmajPent"){
-                    if (this.state.DmajPent.includes(note)){
+                //DmajPent Correct Answer
+                if (this.state.DmajPent.includes(note)){
                     console.log("Dmaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
-                }  
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
+            }  
             else if (this.state.currentScale == "FmajPent"){
+                //FmajPent Correct Answer
                 if (this.state.FmajPent.includes(note)){
                     console.log("Fmaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
             }          
             else if (this.state.currentScale == "GmajPent"){
+                //GmajPent Correct Answer
                 if (this.state.GmajPent.includes(note)){
                     console.log("Gmaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
             }  
             else if (this.state.currentScale == "EmajPent"){
+                //EmajPent Correct Answer
                 if (this.state.EmajPent.includes(note)){
                     console.log("Emaj")
-                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
-             } 
+                    this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})
+                }
+            } 
         } 
+        //Note Quiz
         else {
             if(this.state.currentNote ==note){             
                 console.log("found me")
                 this.setState(prevState=>{return {[("isActive"+idNumber)]:true,noteSelectionCount : prevState.noteSelectionCount + 1}})}
             }
+        //If note or penatonic quiz counter runs up.
         if (this.state.noteQuiz){
-            if (this.state.clickCounter >= 5){this.setState({quizOver:true})}
+            if (this.state.clickCounter >= 5){
+                this.setState({quizOver:true})
+            }
         }
         else if (this.state.scaleQuiz){
-            if (this.state.clickCounter >= 29){this.setState({quizOver:true})}
+            if (this.state.clickCounter >= 29){
+                this.setState({quizOver:true})
+            }
         }
 
     }

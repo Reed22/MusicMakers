@@ -58,7 +58,6 @@ class IntervalQuiz extends Component {
                     }
                     else{
                         //Send Post Request to save quiz
-                        console.log("quiz complete1")
                         API.instance
                         .post("/quizzes", 
                         { 
@@ -70,7 +69,6 @@ class IntervalQuiz extends Component {
                         })
                         .then((res) => {
                           console.log(res);
-                          this.setRedirect()
                         })
                         .catch((error) => {
                           console.log(error);
@@ -89,7 +87,6 @@ class IntervalQuiz extends Component {
                     }
                     else{
                         //Send Post Request to save quiz
-                        console.log("quiz complete2")
                         API.instance
                         .post("/quizzes", 
                         { 

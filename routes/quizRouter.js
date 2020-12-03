@@ -7,7 +7,7 @@ const quizRouter = express.Router();
 
 quizRouter.post('/', function(req, res, next){
     if(req.user){
-        const score_percentage = (req.body.score * 10) + '%'
+        const score_percentage = Math.round(req.body.score * 10) + '%'
         const queryString = 'INSERT INTO Quizzes (quiz_type, score, created_at, user_id) VALUES (?,?,?,?)'
         const params = [req.body.type, score_percentage, moment().format('MMMM Do YYYY, h:mm:ss a'), req.user.user_id]
         db.pool.query(queryString, params, function(err, rows, fields){
