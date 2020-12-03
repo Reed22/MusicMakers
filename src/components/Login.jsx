@@ -58,7 +58,7 @@ class Login extends Component {
       .post("/users", { email, password })
       .then((res) => {
         console.log(res);
-        this.setRedirect()
+        //this.setRedirect()
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +82,7 @@ class Login extends Component {
         UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
         //REDIRECT?
-        this.setRedirect()
+        //this.setRedirect()
         
       })
       .catch((error) => {
