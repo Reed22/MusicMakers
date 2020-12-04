@@ -270,31 +270,20 @@ class FretBoard extends Component {
         //If note or penatonic quiz counter runs up.
         if (this.state.noteQuiz){
             if (this.state.clickCounter >= 5){
-<<<<<<< HEAD
-                this.setState({quizOver:true})
-=======
                 if(this.state.noteSelectionCount == 5){
                     console.log("score per  ",this.state.noteSelectionCount)
                     this.setState({quizOver:true,perfectScore:true})}
                 else{
                     console.log("score   ",this.state.noteSelectionCount)
                     this.setState({quizOver:true})}
->>>>>>> master
             }
         }
         else if (this.state.scaleQuiz){
             if (this.state.clickCounter >= 29){
-<<<<<<< HEAD
-                this.setState({quizOver:true})
-            }
-=======
                 if (this.state.noteSelectionCount == 29){this.setState({quizOver:true,perfectScore:true})}
                 else{this.setState({quizOver:true})}
-            }
-            
->>>>>>> master
+            }    
         }
-
     }
     revertState() {
         // Typical usage (don't forget to compare props):
