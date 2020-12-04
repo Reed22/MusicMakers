@@ -201,20 +201,21 @@ class TriadQuiz extends Component {
 
         return(
             <div>
-                <button id="1" onClick={this.handleChange}>{this.state.clicked ? "Quit" : "Triad Quiz"}</button>
+                <button id="1" class = "quiz-button"onClick={this.handleChange}>{this.state.clicked ? "Quit" : "Triad Quiz"}</button>
                 {
                     this.state.clicked  &&
                     <div>
-                        {this.state.quizOver &&<div> Quiz Over  Score: {this.state.score}/10 </div>}
-                        {!this.state.quizOver && <div >Score: {this.state.score}/10 -- Question #{1+this.state.questionNumber } </div>}
-                        <button id="3" onClick={this.handleChange}>Randomize Note Spelling</button>
-                        <button id="4" onClick={this.handleChange}>Seventh Chords</button>
-                        <div>Which of the following notes compose {this.state.question}</div>
+                        {this.state.quizOver &&<div class = "quiz-text"> Quiz Over  Score: {this.state.score}/10 </div>}
+                        {!this.state.quizOver && <div class = "quiz-text">Score: {this.state.score}/10 -- Question #{1+this.state.questionNumber } </div>}
+                        <button id="3"class = "quiz-button" onClick={this.handleChange}>Randomize Note Spelling {this.state.randomized ? "    (On)" : "    (Off)"}</button>
+                        <button class = "quiz-button" id="4" onClick={this.handleChange}>Seventh Chords{this.state.seventh? "    (On)" : "    (Off)"}</button>
+                        <div class = "quiz-text">Which of the following notes compose {this.state.question}</div>
                         {!this.state.gotCorrectAnswer &&
                         <div><form>
                         <br />
                             <label>
                                 <input 
+                                    class = "quiz-radio-item"
                                     id="6"
                                     type="radio" 
                                     name="chosenAnswer"
@@ -227,6 +228,7 @@ class TriadQuiz extends Component {
                             <label>
                                 <input 
                                     id="7"
+                                    class = "quiz-radio-item"
                                     type="radio" 
                                     name="chosenAnswer"
                                     value= {this.state.ansB}
@@ -239,6 +241,7 @@ class TriadQuiz extends Component {
                                 <input 
                                     id="8"
                                     type="radio" 
+                                    class = "quiz-radio-item"
                                     name="chosenAnswer"
                                     value= {this.state.ansC}
                                     checked={this.state.chosenAnswer == this.state.ansC}
@@ -250,6 +253,7 @@ class TriadQuiz extends Component {
                                 <input 
                                     id="9"
                                     type="radio" 
+                                    class = "quiz-radio-item"
                                     name="chosenAnswer"
                                     value= {this.state.ansD}
                                     checked={this.state.chosenAnswer == this.state.ansD}
