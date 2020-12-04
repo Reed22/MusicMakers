@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import API from "../apis/API";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import { UserMedia } from "tone";
-import UserInfo from './UserInfo.js'
+import UserInfo from "./UserInfo.js";
 
 class Login extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Login extends Component {
       email: "",
       password: "",
       serverRes: "",
-      redirect: false  //REED ADD
+      redirect: false, //REED ADD
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +20,6 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.setRedirect = this.setRedirect.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
-
   }
 
   handleChange(e) {
@@ -35,21 +34,23 @@ class Login extends Component {
   //REED ADD
   setRedirect = () => {
     this.setState({
-      redirect: true
+      redirect: true,
     });
-  }
+  };
   //REED ADD
   renderRedirect = () => {
     if (this.state.redirect) {
-      UserInfo.setEmail(this.state.email)
-      return <Redirect
-                to={{
-                  pathname: "/profile",
-                  state: { email: this.state.email }
-                }}
-            />
+      UserInfo.setEmail(this.state.email);
+      return (
+        <Redirect
+          to={{
+            pathname: "/profile",
+            state: { email: this.state.email },
+          }}
+        />
+      );
     }
-  }
+  };
 
   handleRegister(e) {
     const { email, password } = this.state;
@@ -58,6 +59,15 @@ class Login extends Component {
       .post("/users", { email, password })
       .then((res) => {
         console.log(res);
+        if (res.status === 200) {
+          this.setState({
+            serverRes: "Sucessful Registration",
+          });
+        } else {
+          this.setState({
+            serverRes: "Registration Failure",
+          });
+        }
         //this.setRedirect()
       })
       .catch((error) => {
@@ -79,12 +89,10 @@ class Login extends Component {
         }
       )
       .then((res) => {
-        console.log(res.status)
         UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
         //REDIRECT?
-        if(res.status == 201) this.setRedirect()
-        
+        if (res.status == 201) this.setRedirect();
       })
       .catch((error) => {
         console.log(error);
@@ -99,7 +107,9 @@ class Login extends Component {
     return (
       <div className="container text-center">
         {this.renderRedirect()}
-        {this.props.location.state && <p>{this.props.location.state.error}</p>}
+        {this.props.location.state && (
+          <h3 className="pt-5">{this.props.location.state.error}</h3>
+        )}
         <form className="m-0 p-3">
           <div className="row">
             <div className="col-lg-12 col-lg-offset-12 m-0 p-3">
