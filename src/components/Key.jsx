@@ -24,9 +24,6 @@ function Key(props) {
   }
 
   function playSound() {
-    if(props.octaveSet == '2') {
-      console.log(props.dataNote)
-    }
       changePlay();
       audio.triggerAttackRelease(props.dataNote + props.octave, '8n');
       setTimeout(changePlay, 250); // Probably not the best way to do this
@@ -34,8 +31,6 @@ function Key(props) {
 }
 
 function playScaleKey(notes) {
- // if(props.octaveSet == '2')
-   // console.log(notes)
   const now = Tone.now()
   notes.forEach(note => {
     setTimeout(changePlay, note.delay * 1000);
