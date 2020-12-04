@@ -5,7 +5,7 @@
 }
 
 html body {
-  background-color:sandybrown;
+  background-color: silver;
   padding: 0;
   margin: 0;
   margin-top: 56px;
@@ -65,7 +65,7 @@ body {
   font-size: 100px;
 }
 
-.polyrhythm-button{
+.polyrhythm-button {
   width: 300px;
   height: 100px;
   display: flex;
@@ -76,13 +76,13 @@ body {
   border-width: 0px;
 }
 
-.polyrhythm-button:hover{
+.polyrhythm-button:hover {
   cursor: pointer;
   font-size: 105px;
-
 }
 
-.piano, .octave {
+.piano,
+.octave {
   justify-content: center;
   display: flex;
 }
@@ -133,43 +133,41 @@ body {
   color: black;
   top: 73%;
   padding-left: calc(var(--width) / 3);
-
 }
 
-.octave-identifier{
+.octave-identifier {
   text-align: center;
 }
 
 .fretboard-wrapper {
-    display: grid;
-    grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
-    grid-template-rows: 12% 12% 12% 12% 12% 12% 12%;
-    grid-gap: 3px;
-    color: #444;
-    
-  }
-  
-  .fretboard-box {
-    background-color: #444;
-    color: rgb(20, 20, 16);
-    border-radius: 1px;
-    padding: 20px;
-    font-size: 150%;
-    text-align: center;
-    border-color: rgb(5, 4, 4);
-    
-  }
-  .fretboard-box-green {
-    background-color: rgb(26, 177, 119);
-    color: rgb(19, 9, 9);
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    font-size: 150%;
-  }
-  .fretboard-open{
-    border-radius:30px;color: red}
+  display: grid;
+  grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
+  grid-template-rows: 12% 12% 12% 12% 12% 12% 12%;
+  grid-gap: 3px;
+  color: #444;
+}
 
+.fretboard-box {
+  background-color: #444;
+  color: rgb(20, 20, 16);
+  border-radius: 1px;
+  padding: 20px;
+  font-size: 150%;
+  text-align: center;
+  border-color: rgb(5, 4, 4);
+}
+.fretboard-box-green {
+  background-color: rgb(26, 177, 119);
+  color: rgb(19, 9, 9);
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  font-size: 150%;
+}
+.fretboard-open {
+  border-radius: 30px;
+  color: red;
+}
 
 #profile {
   width: 100vw;
@@ -195,3 +193,23 @@ body {
   align-items: center;
 }
 
+.piano-scale {
+  background-color: lightblue;
+  border: solid black 1px;
+  width: 82.15px;
+  text-align: center;
+}
+
+.piano-scale:hover {
+  cursor: pointer;
+}
+
+.octave-selector {
+  width: 32px;
+  border: solid black 1px;
+  background-color: lightblue;
+}
+
+.octave-selector:hover {
+  cursor: pointer;
+}
