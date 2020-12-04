@@ -202,6 +202,7 @@ body {
 
 .piano-scale:hover {
   cursor: pointer;
+  background-color: lightskyblue;
 }
 
 .octave-selector {
@@ -212,4 +213,5 @@ body {
 
 .octave-selector:hover {
   cursor: pointer;
+  background-color: lightskyblue;
 }
