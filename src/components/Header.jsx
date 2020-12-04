@@ -1,9 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './navigation.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./navigation.css";
 
 export default function Header() {
-  
   return (
     <nav className="navbar navbar-expand navbar-light bg-dark fixed-top">
       {/* left side links */}
@@ -29,11 +28,6 @@ export default function Header() {
       {/* right side links */}
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/login">
-              Login
-            </Link>
-          </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/profile">
               Profile
