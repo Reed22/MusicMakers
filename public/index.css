@@ -5,7 +5,7 @@
 }
 
 html body {
-  background-color:sandybrown;
+  background-color: silver;
   padding: 0;
   margin: 0;
   margin-top: 56px;
@@ -65,7 +65,7 @@ body {
   font-size: 100px;
 }
 
-.polyrhythm-button{
+.polyrhythm-button {
   width: 300px;
   height: 100px;
   display: flex;
@@ -76,13 +76,13 @@ body {
   border-width: 0px;
 }
 
-.polyrhythm-button:hover{
+.polyrhythm-button:hover {
   cursor: pointer;
   font-size: 105px;
-
 }
 
-.piano, .octave {
+.piano,
+.octave {
   justify-content: center;
   display: flex;
 }
@@ -133,10 +133,9 @@ body {
   color: black;
   top: 73%;
   padding-left: calc(var(--width) / 3);
-
 }
 
-.octave-identifier{
+.octave-identifier {
   text-align: center;
 }
 
@@ -205,6 +204,7 @@ body {
   margin: 0;
   padding: 10px 0;
 }
+
 #profile {
   width: 100vw;
   display: inline-block;
@@ -229,3 +229,25 @@ body {
   align-items: center;
 }
 
+.piano-scale {
+  background-color: lightblue;
+  border: solid black 1px;
+  width: 82.15px;
+  text-align: center;
+}
+
+.piano-scale:hover {
+  cursor: pointer;
+  background-color: lightskyblue;
+}
+
+.octave-selector {
+  width: 32px;
+  border: solid black 1px;
+  background-color: lightblue;
+}
+
+.octave-selector:hover {
+  cursor: pointer;
+  background-color: lightskyblue;
+}
