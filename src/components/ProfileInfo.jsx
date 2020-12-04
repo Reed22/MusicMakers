@@ -5,12 +5,12 @@ export default function ProfileInfo(props) {
     return (
         <div className="profile-sidebar">
             <div className="desktop-sticky-top">
-                <h4>Name Here</h4>
-                <div className="font-weight-600 mb-3 text-muted mt-n2">{props.email}</div>
+                <h4>Hi {props.email}!</h4>
                 <span id="profile">
-                    User Description Goes Here
+                    Welcome! Use this page to review previous quiz scores and created custom scales!<br></br> 
+                    Don't have any custom scales? Head on over to the <i>Create Scales</i> page to get started! <br></br>
+                    Haven't taken any quizzes? Well study up and head over to the <i>Quiz</i> page to test your musical knowledge!<br></br>
                 </span>
-                <div className="mb-1"><i className="fa fa-map-marker-alt fa-fw text-muted"></i>City, State</div>
                 <hr className="mt-4 mb-4" />
             </div>
         </div>

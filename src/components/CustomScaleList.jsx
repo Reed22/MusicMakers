@@ -37,9 +37,6 @@ export default function CustomScaleList(props) {
         }
         return formatted_array
     }
-    const handlePagination = () => {
-
-    }
     //GET all scales from user
     useEffect(()=> {
         API.instance
@@ -54,9 +51,9 @@ export default function CustomScaleList(props) {
     return (
         <div>
             {user_scales}
-            <div className="text-center p-3">
+{/*             <div className="text-center p-3">
                 <a onClick={() => handlePagination()} className="text-dark text-decoration-none">Show more <b className="caret"></b></a>
-            </div>
+            </div> */}
         </div>
     )
 }

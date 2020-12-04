@@ -1,6 +1,7 @@
 import React,  {useState} from 'react'
 import {Component} from 'react'
 import * as Tone from 'tone'
+import API from "../apis/API";
 
 class IntervalQuiz extends Component {
     constructor() {
@@ -56,6 +57,22 @@ class IntervalQuiz extends Component {
                         setTimeout(()=> this.playNote(),1000)
                     }
                     else{
+                        //Send Post Request to save quiz
+                        API.instance
+                        .post("/quizzes", 
+                        { 
+                            score: this.state.score,
+                            type: "Interval"
+                        },
+                        {
+                            withCredentials: true
+                        })
+                        .then((res) => {
+                          console.log(res);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
                         this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
                         setTimeout(()=> this.setState({clicked:false}),3000)}
                 })
@@ -69,6 +86,22 @@ class IntervalQuiz extends Component {
                         setTimeout(()=> this.playNote(),1000)
                     }
                     else{
+                        //Send Post Request to save quiz
+                        API.instance
+                        .post("/quizzes", 
+                        { 
+                            score: this.state.score,
+                            type: "Interval"
+                        },
+                        {
+                            withCredentials: true
+                        })
+                        .then((res) => {
+                          console.log(res);
+                        })
+                        .catch((error) => {
+                          console.log(error);
+                        });
                         this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
                         setTimeout(()=> this.setState({clicked:false}),1500)}
                 })

@@ -157,6 +157,7 @@ class TriadQuiz extends Component {
         if (this.state.questionNumber < 10){
             this.setState({gotCorrectAnswer:false})}
         else {
+            //Send post request to save quiz score
             API.instance
             .post("/quizzes", 
             { 
@@ -166,16 +167,11 @@ class TriadQuiz extends Component {
             {
                 withCredentials: true
             })
-            .then((res) => {
-              console.log(res);
-              this.setRedirect()
-            })
             .catch((error) => {
               console.log(error);
             });
             this.setState({quizOver:true})
             setTimeout(()=>this.setState({gotCorrectAnswer:false,score:0,questionNumber:0,quizOver:false}),3000)
-            
         }
 
         var answers = []    

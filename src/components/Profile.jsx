@@ -58,15 +58,15 @@ export default function Profile(props) {
                     <div className="profile-header-content">
                         <ul className="profile-header-tab nav nav-tabs nav-tabs-v2">
                             <li className="nav-item">
-                                <a onClick={() => setList("Quiz")} className="nav-link" data-toggle="tab">
-                                    <div className="nav-field">Quiz Scores</div>
-                                    <div className="nav-value">{numQuizzes}</div>
-                                </a>
-                            </li>
-                            <li className="nav-item">
                                 <a onClick={() => setList("Scales")} className="nav-link active" data-toggle="tab">
                                     <div className="nav-field">Custom Scales</div>
                                     <div className="nav-value">{numScales}</div>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a onClick={() => setList("Quiz")} className="nav-link" data-toggle="tab">
+                                    <div className="nav-field">Quiz Scores</div>
+                                    <div className="nav-value">{numQuizzes}</div>
                                 </a>
                             </li>
                         </ul>

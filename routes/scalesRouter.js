@@ -12,8 +12,9 @@ scalesRouter.post("/", async function (req, res, next) {
     //Only post if a user is logged in.
     if(req.user){
         //Check that name is not the same
-        const query = 'SELECT COUNT(scale_id) AS NumberOfScales FROM Scales WHERE name = ?'
-        db.pool.query(query, req.body.name, function(err, rows, fields){
+        const query = 'SELECT COUNT(scale_id) AS NumberOfScales FROM Scales WHERE name = ? AND user_id = ?'
+        const params = [req.body.name, req.user.user_id]
+        db.pool.query(query, params, function(err, rows, fields){
             //Name is unique
             if(rows[0].NumberOfScales == 0){
                 const querystring = 'INSERT INTO Scales (name, user_id, created_at) VALUES (?,?,?)'
@@ -54,7 +55,7 @@ scalesRouter.get("/", function(req, res, next){
                             "FROM Scales JOIN Scales_Notes ON Scales.scale_id = Scales_Notes.scale_id " +
                             "JOIN Notes ON Scales_Notes.note_id = Notes.note_id " +
                             "WHERE Scales.user_id = ? " +
-                            "ORDER BY Scales.created_at DESC"
+                            "ORDER BY Scales.scale_id DESC"
         db.pool.query(queryString, req.user.user_id, function(err, rows, fields){
             if(err){
                 console.log(err)

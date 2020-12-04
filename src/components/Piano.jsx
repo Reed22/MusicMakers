@@ -31,6 +31,7 @@ function Piano() {
   
   function playScale(scale_array){
     setScale(scale_array)
+    setTimeout(()=> {setScale(null)}, 1000)
   }
 
   return (
