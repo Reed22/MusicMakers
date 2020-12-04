@@ -79,6 +79,7 @@ class Login extends Component {
         }
       )
       .then((res) => {
+        console.log(res.status)
         UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
         //REDIRECT?
