@@ -15,7 +15,6 @@ export default function CustomScale(props) {
     }
 
     const playScale = (notes) => {
-        console.log(notes)
         const now = Tone.now()
         notes.forEach((note_obj, index) => {
             sampler.triggerAttackRelease(note_obj.note  + note_obj.octave, "8n", now + (index / 2))

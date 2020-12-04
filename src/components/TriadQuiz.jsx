@@ -167,16 +167,11 @@ class TriadQuiz extends Component {
             {
                 withCredentials: true
             })
-            .then((res) => {
-              console.log(res);
-              this.setRedirect()
-            })
             .catch((error) => {
               console.log(error);
             });
             this.setState({quizOver:true})
             setTimeout(()=>this.setState({gotCorrectAnswer:false,score:0,questionNumber:0,quizOver:false}),3000)
-            
         }
 
         var answers = []    

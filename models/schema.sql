@@ -17,6 +17,10 @@ CREATE TABLE Quizzes(
   quiz_type VARCHAR(255) NOT NULL,
   created_at VARCHAR(255) NOT NULL,
   score VARCHAR(255) NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    ON DELETE CASCADE
+);
 
   -- Scales
 DROP TABLE IF EXISTS Scales;

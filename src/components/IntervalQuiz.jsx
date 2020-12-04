@@ -98,7 +98,6 @@ class IntervalQuiz extends Component {
                         })
                         .then((res) => {
                           console.log(res);
-                          this.setRedirect()
                         })
                         .catch((error) => {
                           console.log(error);
