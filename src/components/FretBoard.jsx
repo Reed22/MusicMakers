@@ -112,7 +112,7 @@ class FretBoard extends Component {
         var maximum = 11
         var minimum = 0
         var randomNumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
-        //console.log( noteSelector[randomNumber])
+        console.log( "debug",noteSelector[randomNumber])
         this.setState({currentNote: noteSelector[randomNumber],scaleQuiz:false,noteQuiz:true},()=>{console.log(this.state.scaleQuiz,this.state.arpQuiz,)})
     }
     createScaleQuiz(){
@@ -182,20 +182,27 @@ class FretBoard extends Component {
         else if (event.target.id == 2){
             this.revertState()
             this.setState({
-                    currentNote:"",
-                    noteSelectionCount:0 ,
-                    clickCounter:0 ,
-                    perfectScore:false               
+                currentNote:"",
+                noteSelectionCount:0,
+                clickCounter:0,
+                quizOver : false,
+                noteQuiz:false,
+                scaleQuiz:false,
+                perfectScore:false                
             },()=>{this.createNoteQuiz()})
         }
         //Create Scale Quiz
         else if (event.target.id == 3){
             this.revertState()
             this.setState({
-                    currentScale:"",
-                    noteSelectionCount:0,
-                    clickCounter:0  ,
-                    perfectScore:false              
+                currentNote:"",
+                currentScale:"",
+                noteSelectionCount:0,
+                clickCounter:0,
+                quizOver : false,
+                noteQuiz:false,
+                scaleQuiz:false,
+                perfectScore:false              
             },()=>{this.createScaleQuiz()})              
         }
         else if (event.target.id == 4){
