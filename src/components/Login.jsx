@@ -91,11 +91,11 @@ class Login extends Component {
       .then((res) => {
         UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
-        //REDIRECT?
-        if (res.status == 201) this.setRedirect();
+        if (res.status == 201) 
+          this.setRedirect();
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ serverRes: error.response.data });
       });
 
     e.preventDefault();
