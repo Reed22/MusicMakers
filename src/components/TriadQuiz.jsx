@@ -83,8 +83,8 @@ class TriadQuiz extends Component {
                 this.setState(prevState =>{
                     return { gotCorrectAnswer:true, score :prevState.score + 1, questionNumber: prevState.questionNumber + 1,chosenAnswer:""}
                 },()=>{
-                    setTimeout(()=> this.generateQuestion(),1000)
-                    
+                    //setTimeout(()=> this.generateQuestion(),1000)
+                    this.generateQuestion()
                 })
             }
             else
@@ -171,7 +171,8 @@ class TriadQuiz extends Component {
               console.log(error);
             });
             this.setState({quizOver:true})
-            setTimeout(()=>this.setState({gotCorrectAnswer:false,score:0,questionNumber:0,quizOver:false}),3000)
+            this.setState({gotCorrectAnswer:false,score:0,questionNumber:0,quizOver:false}) 
+			//setTimeout(()=>this.setState({gotCorrectAnswer:false,score:0,questionNumber:0,quizOver:false}),3000)
         }
 
         var answers = []    

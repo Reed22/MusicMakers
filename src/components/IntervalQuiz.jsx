@@ -54,7 +54,8 @@ class IntervalQuiz extends Component {
                     }
                 }, ()=> {
                     if (this.state.questionNumber < 10){
-                        setTimeout(()=> this.playNote(),1000)
+                        //setTimeout(()=> this.playNote(),1000)
+						 this.playNote()
                     }
                     else{
                         //Send Post Request to save quiz
@@ -73,8 +74,9 @@ class IntervalQuiz extends Component {
                         .catch((error) => {
                           console.log(error);
                         });
-                        this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
-                        setTimeout(()=> this.setState({clicked:false}),3000)}
+                        this.setState({clicked:false})
+						//this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
+                        //setTimeout(()=> this.setState({clicked:false}),3000)}
                 })
             }
             else{
@@ -83,10 +85,11 @@ class IntervalQuiz extends Component {
                     questionNumber : prevState.questionNumber+1}
                 }, ()=> {
                     if (this.state.questionNumber < 10){
-                        setTimeout(()=> this.playNote(),1000)
+                        this.playNote()
+						//setTimeout(()=> this.playNote(),1000)
                     }
                     else{
-                        //Send Post Request to save quiz
+                        //Send Post Request to save quiz  -- Quiz over
                         API.instance
                         .post("/quizzes", 
                         { 
@@ -102,8 +105,9 @@ class IntervalQuiz extends Component {
                         .catch((error) => {
                           console.log(error);
                         });
-                        this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
-                        setTimeout(()=> this.setState({clicked:false}),1500)}
+                        this.setState({clicked:false})
+						//this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
+                        //setTimeout(()=> this.setState({clicked:false}),1500)}
                 })
             }
         }
