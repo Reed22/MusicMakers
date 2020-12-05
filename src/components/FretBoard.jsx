@@ -184,7 +184,8 @@ class FretBoard extends Component {
             this.setState({
                     currentNote:"",
                     noteSelectionCount:0 ,
-                    clickCounter:0                
+                    clickCounter:0 ,
+                    perfectScore:false               
             },()=>{this.createNoteQuiz()})
         }
         //Create Scale Quiz
@@ -193,7 +194,8 @@ class FretBoard extends Component {
             this.setState({
                     currentScale:"",
                     noteSelectionCount:0,
-                    clickCounter:0                
+                    clickCounter:0  ,
+                    perfectScore:false              
             },()=>{this.createScaleQuiz()})              
         }
         else if (event.target.id == 4){
