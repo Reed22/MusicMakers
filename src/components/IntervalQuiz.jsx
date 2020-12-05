@@ -62,7 +62,7 @@ class IntervalQuiz extends Component {
                         }
                         else{
                             //Send Post Request to save quiz
-                            /*API.instance
+                            API.instance
                             .post("/quizzes", 
                             { 
                                 score: this.state.score,
@@ -76,7 +76,7 @@ class IntervalQuiz extends Component {
                             })
                             .catch((error) => {
                             console.log(error);
-                            });*/
+                            });
                             this.setState({quizOver:true})
                             //this.setState({grade:"Quiz over. Score "+String(this.state.score) + "/10"})
                             //setTimeout(()=> this.setState({clicked:false}),3000)}
