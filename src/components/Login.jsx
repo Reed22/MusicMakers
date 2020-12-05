@@ -89,7 +89,7 @@ class Login extends Component {
         }
       )
       .then((res) => {
-        UserInfo.setEmail(email);
+        UserInfo.setEmail(email)
         this.setState({ serverRes: res.data });
         //REDIRECT?
         if (res.status == 201) this.setRedirect();

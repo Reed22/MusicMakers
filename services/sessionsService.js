@@ -18,7 +18,7 @@ const logIn = async (err, user, info, req, res, next) => {
 
   // send res for incorrect email or password
   if (!user) {
-    res.send(info.message).end();
+    res.status(400).send(info.message);
     return;
   }
 
